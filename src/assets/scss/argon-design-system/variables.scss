@@ -11,7 +11,8 @@ $enable-print-styles:       true !default;
 
 
 // Color system
-
+$primary-runners: #D20A87;
+$primary-dark-runners: #C2138E;
 $white:    #fff !default;
 $gray-100: #f6f9fc !default;
 $gray-200: #e9ecef !default;
@@ -676,8 +677,8 @@ $navbar-nav-link-border-radius:     $border-radius !default;
 $navbar-dark-bg:                    transparent !default;
 $navbar-dark-hover-bg:              rgba(255, 255, 255, .1);
 $navbar-dark-active-bg:             rgba(255, 255, 255, .1);
-$navbar-dark-color:                 rgba($white, .95);
-$navbar-dark-hover-color:           rgba($white, .65);
+$navbar-dark-color:                 rgba($primary-runners, .95);
+$navbar-dark-hover-color:           rgba($primary-dark-runners, .65);
 $navbar-dark-active-color:          rgba($white, .65);
 $navbar-dark-disabled-color:        rgba($white, .25);
 $navbar-dark-toggler-border-color:  transparent !default;

@@ -13006,7 +13006,7 @@ textarea[resize="horizontal"] {
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: transparent !important;
+  background-color: white !important;
   border: 0;
   box-shadow: none; }
   .navbar-transparent .navbar-brand {

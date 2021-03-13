@@ -190,16 +190,16 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: transparent !important;
+  background-color: white !important;
   border: 0;
   box-shadow: none;
 
   .navbar-brand {
-    color: rgba(255, 255, 255, 1);
+    color: #C9108B;
   }
 
   .navbar-toggler {
-    color: rgba(255, 255, 255, 1);
+    color: #C9108B;
   }
 
   .navbar-toggler-icon {
@@ -219,13 +219,17 @@
         .navbar-nav {
             .nav-link {
                 color: $navbar-dark-color;
-
+                font-weight: 700;
                 @include hover-focus {
                     color: $navbar-dark-hover-color;
                 }
 
                 &.disabled {
                     color: $navbar-dark-disabled-color;
+                }
+
+                &.nav-link-icon{
+                    color: $black;
                 }
             }
 
