@@ -1,34 +1,40 @@
-/*!
-
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
+import grupo from "assets/img/runners/grupo.jpg"
+import grupo_2 from "assets/img/runners/grupo2.jpg"
+import grupo_3 from "assets/img/runners/grupo3.jpg"
+import grupo_4 from "assets/img/runners/grupo4.jpg"
+import grupo_5 from "assets/img/runners/grupo5.jpg"
 
 // reactstrap components
 import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
 
 const items = [
   {
-    src: require("assets/img/theme/img-1-1200x1000.jpg"),
+    src: grupo,
     altText: "",
     caption: "",
     header: ""
   },
   {
-    src: require("assets/img/theme/img-2-1200x1000.jpg"),
+    src: grupo_2,
+    altText: "",
+    caption: "",
+    header: ""
+  },
+  {
+    src: grupo_3,
+    altText: "",
+    caption: "",
+    header: ""
+  },
+  {
+    src: grupo_4,
+    altText: "",
+    caption: "",
+    header: ""
+  },
+  {
+    src: grupo_5,
     altText: "",
     caption: "",
     header: ""
@@ -52,7 +58,7 @@ class Carousel extends React.Component {
             <Row className="justify-content-between align-items-center">
               <Col className="mb-5 mb-lg-0" lg="5">
                 <h1 className="text-white font-weight-light">
-                  Bootstrap carousel
+                  Quienes Somos
                 </h1>
                 <p className="lead text-white mt-4">
                   Argon Design System comes with four pre-built pages to help
@@ -64,7 +70,7 @@ class Carousel extends React.Component {
                   color="default"
                   href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alerts?ref=adsr-landing-page"
                 >
-                  See all components
+                  Contactanos
                 </Button>
               </Col>
               <Col className="mb-lg-auto" lg="6">
