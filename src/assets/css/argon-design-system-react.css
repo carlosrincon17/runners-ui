@@ -5053,12 +5053,12 @@ button.bg-dark:focus {
   background-color: #0a0c0d !important; }
 
 .bg-default {
-  background-color: #172b4d !important; }
+  background-color: #4d174a !important; }
 
 a.bg-default:hover, a.bg-default:focus,
 button.bg-default:hover,
 button.bg-default:focus {
-  background-color: #0b1526 !important; }
+  background-color: #260b23 !important; }
 
 .bg-white {
   background-color: #fff !important; }
@@ -12913,7 +12913,7 @@ textarea[resize="horizontal"] {
   font-size: .875rem;
   letter-spacing: .05px; }
   .navbar-brand img {
-    height: 30px; }
+    height: 65px; }
 
 .navbar-dark .navbar-brand {
   color: #fff; }

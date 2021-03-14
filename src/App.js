@@ -1,6 +1,5 @@
 import './App.css';
-import './';
-
+import './index.css';
 import {
   BrowserRouter as Router,
   Switch,

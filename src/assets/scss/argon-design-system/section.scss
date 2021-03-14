@@ -31,6 +31,11 @@
     position: relative;
     overflow: hidden;
 
+    &.section-background {
+        z-index: -1;
+        height: 780px;
+    }
+
     &.section-hero {
       &:before {
         top: 680px;
@@ -298,6 +303,11 @@
 
         &.shape-default {
             background: linear-gradient(150deg, shapes-default-color("step-1-gradient-bg") 15%, shapes-default-color("step-2-gradient-bg") 70%, shapes-default-color("step-3-gradient-bg") 94%);
+        }
+
+        &.shape-background-image {
+            background-image: url("/assets/img/brand/carrera.png");
+            z-index: 99999;
         }
 
         &.shape-light {
