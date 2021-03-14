@@ -9,7 +9,7 @@ class UserService extends BaseService {
     }
 
     createUser(userData) {
-        return this.apiHelper.post(this.moduleUrl, userData)
+        return this.apiHelper.post(this.moduleUrl, userData);
     }
 }
 

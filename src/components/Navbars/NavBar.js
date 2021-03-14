@@ -192,8 +192,8 @@ const NavBar = () => {
                 <Button
                   className="btn-icon btn-white"
                   color="default"
-                  href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-navbar"
-                  target="_blank"
+                  to="/login-page" 
+                  tag={Link}
                 >
                   <span className="nav-link-inner--text ml-1">
                     Iniciar Sesión
