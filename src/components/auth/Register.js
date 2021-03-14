@@ -38,7 +38,8 @@ const Register = () => {
     country: '',
     birth_date: ''
   })
-  const [registrationTypes, setRegistrationTypes] = useState([])
+  const [registrationTypes, setRegistrationTypes] = useState([]);
+  const [selectedRegistrationType, setSelectedRegistrationType] = useState();
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -63,7 +64,8 @@ const Register = () => {
   const submitRegisterForm = (event) => {
     event.preventDefault();
     const userService = new UserService();
-    const createUserResponse = userService.createUser(formData)
+    const requestData = Object.assign(formData, {registration_type_id: selectedRegistrationType})
+    const createUserResponse = userService.createUser(requestData)
       .then(data => console.log(data))
       .catch(error => console.error(error));
   }
@@ -97,7 +99,8 @@ const Register = () => {
   const renderRegistrationTypeCards = () => {
     return registrationTypes.map(registrationType => (
       <Col lg="4" key={registrationType.id}>
-        <Card className="card-lift--hover shadow border-0">
+        <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${registrationType.id === selectedRegistrationType ? 'selected': ''}`}
+           onClick={() => setSelectedRegistrationType(registrationType.id)}>
           <CardBody className="py-5">
             <div className="text-center">
               <span className="text-primary text-uppercase" style={{fontSize: '32px', fontWeight: 700}}>
@@ -209,13 +212,14 @@ const Register = () => {
                               htmlFor="customCheckRegister"
                             >
                                 <span>
-                                  I agree with the{" "}
+                                  Estoy de acuerdo con {" "}
                                   <a
                                     href="#pablo"
                                     onClick={e => e.preventDefault()}
                                   >
-                                    Privacy Policy
-                                  </a>
+                                    Reglamento
+                                  </a> {" "}
+                                  de la competencia.
                                 </span>
                             </label>
                           </div>
