@@ -5,15 +5,10 @@ import {
   Card,
   CardHeader,
   CardBody,
-  FormGroup,
   Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Row,
-  Col, Badge
+  Col, Badge, Modal, Spinner
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
@@ -23,9 +18,10 @@ import UserService from "../../services/user.service";
 import {MASKS} from "../../util/mask.util";
 import RegistrationTypeService from "../../services/registration_type.service";
 import CurrencyFormat from 'react-currency-format';
+import {useHistory, useParams} from "react-router";
 
 const Register = () => {
-
+  let { distance } = useParams();
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -40,6 +36,9 @@ const Register = () => {
   })
   const [registrationTypes, setRegistrationTypes] = useState([]);
   const [selectedRegistrationType, setSelectedRegistrationType] = useState();
+  const [loadingRegister, setLoadingRegister] = useState(false);
+  const [notificationModal, setNotificationModal] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -64,14 +63,28 @@ const Register = () => {
   const submitRegisterForm = (event) => {
     event.preventDefault();
     const userService = new UserService();
-    const requestData = Object.assign(formData, {registration_type_id: selectedRegistrationType})
-    const createUserResponse = userService.createUser(requestData)
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+    const requestData = Object.assign(formData, {
+      registration_type_id: selectedRegistrationType,
+      distance: distance
+    });
+    setLoadingRegister(true);
+    userService.createUser(requestData)
+      .then(data => {
+        setNotificationModal(true);
+        setLoadingRegister(false);
+      })
+      .catch(error => {
+        console.error(error)
+        setLoadingRegister(false);
+      });
   }
 
   const renderInput = (name, label, options = {}) => {
     return renderFormInput(name, label, handleInputChange, options);
+  }
+
+  const onCloseSuccessModal = () => {
+    history.push('/');
   }
 
   const renderRegistrationTypeDescriptionList = (description) => {
@@ -111,7 +124,7 @@ const Register = () => {
               {renderRegistrationTypeDescriptionList(registrationType.description)}
             </ul>
             <p className="description text-center bold">
-              {registrationType.limits}
+              <small>{registrationType.limits}</small>
             </p>
           </CardBody>
         </Card>
@@ -140,37 +153,14 @@ const Register = () => {
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white pb-5">
                     <div className="text-muted text-center mb-3">
-                      <small>Sign up with</small>
+                      Te estás registrando a la carrera:
                     </div>
                     <div className="text-center">
-                      <Button
-                        className="btn-neutral btn-icon mr-4"
-                        color="default"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                      >
-                          <span className="btn-inner--icon mr-1">
-                            <img
-                              alt="..."
-                              src={require("assets/img/icons/common/github.svg")}
-                            />
-                          </span>
-                        <span className="btn-inner--text">Github</span>
-                      </Button>
-                      <Button
-                        className="btn-neutral btn-icon ml-1"
-                        color="default"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                      >
-                          <span className="btn-inner--icon mr-1">
-                            <img
-                              alt="..."
-                              src={require("assets/img/icons/common/google.svg")}
-                            />
-                          </span>
-                        <span className="btn-inner--text">Google</span>
-                      </Button>
+                      <div className="icon-card icon-shape icon-shape-warning rounded-circle mb-4">
+                        <h6 className="title-runners text-warning text-uppercase">
+                          {distance}
+                        </h6>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
@@ -231,8 +221,18 @@ const Register = () => {
                           color="primary"
                           type="button"
                           onClick={submitRegisterForm}
+                          disabled={loadingRegister}
                         >
-                          Create account
+                          <Spinner
+                            as="span"
+                            animation="grow"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                            className={loadingRegister ? '': 'd-none'}
+                          />
+                          {' '}
+                          Inscribirse
                         </Button>
                       </div>
                     </Form>
@@ -240,6 +240,44 @@ const Register = () => {
                 </Card>
               </Col>
             </Row>
+            <Modal
+              className="modal-dialog-centered modal-success"
+              contentClassName="bg-gradient-success"
+              isOpen={notificationModal}
+              backdrop="static"
+              toggle={onCloseSuccessModal}
+            >
+              <div className="modal-header">
+                <h6 className="modal-title" id="modal-title-notification">
+                  Confirmación
+                </h6>
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={onCloseSuccessModal}
+                >
+                  <span aria-hidden={true}>×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="py-3 text-center">
+                  <i className="ni ni-bell-55 ni-3x" />
+                  <h4 className="heading mt-4">Registro exitoso!</h4>
+                  <p>
+                    Tu registro ha finalizado correctamente, recibirás un e-mail de confirmación de la inscripción:
+                    Por favor verifique que toda la información es correcta, en caso de algún dato erróneo por favor
+                    envíe un correo runnerscucuta@gmail.com solicitando los cambios.
+                  </p>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <Button className="btn-white" color="default" type="button" onClick={onCloseSuccessModal}>
+                  Entendido!
+                </Button>
+              </div>
+            </Modal>
           </Container>
         </section>
       </main>

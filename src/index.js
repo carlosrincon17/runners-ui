@@ -8,7 +8,7 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 import "./index.css";
 
 import Index from "views/Index.js";
-import Landing from "views/examples/Landing.js";
+import Landing from "components/landing/Landing.js";
 import Login from "components/auth/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "components/auth/Register.js";
@@ -16,20 +16,19 @@ import Register from "components/auth/Register.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact render={props => <Index {...props} />} />
       <Route
-        path="/landing-page"
+        path="/"
         exact
         render={props => <Landing {...props} />}
       />
-      <Route path="/login-page" exact render={props => <Login {...props} />} />
+      <Route path="/login" exact render={props => <Login {...props} />} />
       <Route
         path="/profile-page"
         exact
         render={props => <Profile {...props} />}
       />
       <Route
-        path="/register-page"
+        path="/registro/:distance"
         exact
         render={props => <Register {...props} />}
       />

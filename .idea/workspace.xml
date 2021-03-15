@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1122cee-4f53-4fc3-8de4-fcadbf63cb7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo4 (1).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/runners/grupo5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/IndexSections/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/IndexSections/Carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/examples/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/examples/Landing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commons/base.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commons/navbar.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commons/sidebar.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/commons/wizzard.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/landing.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/examples/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landing/Landing.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,29 +52,38 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/util" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\apps\runners\runners-ui\src\util" />
       <recent name="D:\Runners\runners-ui\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\apps\runners\runners-ui\src\components\landing" />
       <recent name="D:\Runners\runners-ui\src\assets\scss\argon-design-system" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d24eb18b-b04c-4424-9138-d0c2a0229ad6" name="Default Changelist" comment="" />
+      <changelist id="b1122cee-4f53-4fc3-8de4-fcadbf63cb7e" name="Default Changelist" comment="" />
       <created>1615657927360</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615657927360</updated>
       <workItem from="1615657929339" duration="2290000" />
       <workItem from="1615667963998" duration="19473000" />
+      <workItem from="1615728458391" duration="8639000" />
     </task>
     <servers />
   </component>

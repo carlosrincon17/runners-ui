@@ -1,6 +1,5 @@
 
 import React from "react";
-import classnames from "classnames";
 import barqueros from "assets/img/patrocinadores/baqueros.jpeg"
 import vida_fit from "assets/img/patrocinadores/vida fit.jpeg"
 import color_creativo from "assets/img/patrocinadores/color_creativo.png"
@@ -10,16 +9,10 @@ import epicc from "assets/img/patrocinadores/epicc.png"
 import rentabien from "assets/img/patrocinadores/rentabien.png"
 import samuel from "assets/img/patrocinadores/samuel.png"
 import {
-  Badge,
   Button,
   Card,
   CardBody,
   CardImg,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
   Row,
   Col
@@ -27,9 +20,8 @@ import {
 
 import Navbar from "components/Navbars/NavBar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
-
-import Download from "../IndexSections/Download.js";
-import Carousel from "../IndexSections/Carousel";
+import Carousel from "../../views/IndexSections/Carousel";
+import {Link} from "react-router-dom";
 
 class Landing extends React.Component {
   state = {};
@@ -44,7 +36,7 @@ class Landing extends React.Component {
         <Navbar />
         <main ref="main">
           <div className="position-relative">
-            {/* shape Hero */}
+
             <section className="section section-lg section-shaped section-background pb-250">
               <div className="shape shape-style-1 shape-background-image">
                 <span />
@@ -120,8 +112,8 @@ class Landing extends React.Component {
                           <Button
                             className="mt-4 text-center"
                             color="primary"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
+                            to={'/registro/5K'}
+                            tag={Link}
                           >
                             Inscribete Aqui!
                           </Button>
@@ -144,8 +136,8 @@ class Landing extends React.Component {
                           <Button
                             className="mt-4"
                             color="danger"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
+                            to={'/registro/10K'}
+                            tag={Link}
                           >
                             Inscribete Aqui!
                           </Button>
@@ -168,8 +160,8 @@ class Landing extends React.Component {
                           <Button
                             className="mt-4"
                             color="warning"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
+                            to={'/registro/20K'}
+                            tag={Link}
                           >
                             Inscribete Aqui!
                           </Button>

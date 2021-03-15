@@ -18,19 +18,22 @@ import Navbar from "components/Navbars/NavBar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import React, {useEffect, useState} from "react";
 import AuthService from "services/auth.service"
+import LocalStorageUtil from "../../util/localstorage.util";
+import {useHistory} from "react-router";
 
 const Login = () => {
-
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, []);
 
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  const history = useHistory();
   const [errorResponse, setErrorResponse] = useState({});
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+  }, []);
 
   const handleInputChange = (event) => {
     setFormData({
@@ -49,7 +52,10 @@ const Login = () => {
   };
 
   const onAuthenticateUserSuccess = (response) => {
-    console.log(response)
+    const {data} = response;
+    LocalStorageUtil.setItem(LocalStorageUtil.TOKEN_KEY, data.access_token);
+    LocalStorageUtil.setItem(LocalStorageUtil.ACCESS_TIME, new Date());
+    history.push('/');
   };
 
   const onAuthenticateUserError = (error) => {
