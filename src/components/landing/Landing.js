@@ -105,9 +105,7 @@ class Landing extends React.Component {
                             </h6>
                           </div>
                           <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
+                            CAMINALA O CORRELA, PERO DISFRUTALA
                           </p>
                           <Button
                             className="mt-4 text-center"
@@ -149,7 +147,7 @@ class Landing extends React.Component {
                         <CardBody className="text-center py-5">
                           <div className="icon-card icon-shape icon-shape-warning rounded-circle mb-4">
                             <h6 className="title-runners text-warning text-uppercase">
-                              20k
+                              21k
                             </h6>
                           </div>
                           <p className="description mt-3">
@@ -204,9 +202,10 @@ class Landing extends React.Component {
                         RECUERDA!
                       </h4>
                       <p className="lead text-italic text-white">
-                        Una vez completado el registro las personas recibirán un e-mail de confirmación
-                        de la inscripción: Por favor verifique que toda la información es correcta, en caso de
-                        algún dato erróneo por favor envíe un correo runnerscucuta@gmail.com solicitando los cambios.
+                        Tu inscripción será válida hasta que tu pago sea realizado.
+                        <br />
+                        El pago lo podrás efectuar mediante una consignación a la <strong>CUENTA AUTORIZADA </strong>
+                        Bancolombia a la mano número 03115148995.
                       </p>
                     </blockquote>
                   </Card>
@@ -218,7 +217,7 @@ class Landing extends React.Component {
                     </div>
                     <h3>Ten Presente!</h3>
                     <p className="lead">
-                      Desde el día 1 de marzo del 2021 hasta el 30 de junio del 2021 fecha de cierre de inscripciones,
+                      Desde el día 20 de marzo del 2021 hasta el 30 de junio del 2021 fecha de cierre de inscripciones,
                       estas estarán abiertas las 24 horas del día, a través de la página web
                     </p>
                     <a
