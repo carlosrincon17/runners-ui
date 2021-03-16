@@ -3,8 +3,8 @@ import React, {useEffect} from "react";
 import {Button, Card, Container, Row, Col} from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
 import UserService from "../../services/user.service";
+import CardsFooter from "components/Footers/CardsFooter";
 
 const Profile = () => {
 
@@ -150,7 +150,7 @@ const Profile = () => {
           </Container>
         </section>
       </main>
-      <SimpleFooter/>
+      <CardsFooter />
     </>
   );
 }

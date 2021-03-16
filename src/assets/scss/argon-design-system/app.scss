@@ -6,7 +6,9 @@
   font-family: 'Bangers', cursive;
   font-size: 50px;
 }
-
+.title-h3 {
+  color: $teal !important;
+}
 // Registration Form
 .card-select-registration-type {
   &:hover {

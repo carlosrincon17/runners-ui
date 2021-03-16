@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1122cee-4f53-4fc3-8de4-fcadbf63cb7e" name="Default Changelist" comment="">
+    <list default="true" id="86f1f32f-b1a4-42fa-be06-c0612be41146" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Regulation/Regulation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commons/base.component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commons/navbar.component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commons/sidebar.component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/commons/wizzard.component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/landing/landing.component.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landing/Landing.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/examples/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landing/Landing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/IndexSections/Tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/IndexSections/Tabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/examples/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/examples/Profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="SCSS File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,7 +34,7 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
   </component>
-  <component name="ProjectId" id="1piFIywkHPfi02mz8rmG5YvyDHG" />
+  <component name="ProjectId" id="1plu7intFZ0rFVfyPLeV6WeDKJM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,8 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/util" />
-    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -61,29 +51,25 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="D:\Runners\runners-ui\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\apps\runners\runners-ui\src\util" />
-      <recent name="D:\Runners\runners-ui\public" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\apps\runners\runners-ui\src\components\landing" />
-      <recent name="D:\Runners\runners-ui\src\assets\scss\argon-design-system" />
+      <recent name="D:\Runners\runners-ui\src\components\Regulation" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b1122cee-4f53-4fc3-8de4-fcadbf63cb7e" name="Default Changelist" comment="" />
-      <created>1615657927360</created>
+      <changelist id="86f1f32f-b1a4-42fa-be06-c0612be41146" name="Default Changelist" comment="" />
+      <created>1615769836389</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1615657927360</updated>
-      <workItem from="1615657929339" duration="2290000" />
-      <workItem from="1615667963998" duration="19473000" />
-      <workItem from="1615728458391" duration="8639000" />
+      <updated>1615769836389</updated>
+      <workItem from="1615769838984" duration="1194000" />
+      <workItem from="1615817699127" duration="5741000" />
+      <workItem from="1615928668904" duration="1064000" />
     </task>
     <servers />
   </component>

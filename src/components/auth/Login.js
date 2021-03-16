@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import CardsFooter from "components/Footers/CardsFooter";
 import React, {useEffect, useState} from "react";
 import AuthService from "services/auth.service"
 import LocalStorageUtil from "../../util/localstorage.util";
@@ -83,7 +83,7 @@ const Login = () => {
       <Navbar/>
       <main>
         <section className="section section-shaped section-lg">
-          <div className="shape shape-style-1 bg-gradient-default">
+          <div className="shape shape-style-1 shape-default">
             <span/>
             <span/>
             <span/>
@@ -132,7 +132,7 @@ const Login = () => {
                       <div className="text-center">
                         <Button
                           className="my-4"
-                          color="primary"
+                          color="info"
                           type="button"
                           onClick={submitLoginForm}
                         >
@@ -157,7 +157,7 @@ const Login = () => {
           </Container>
         </section>
       </main>
-      <SimpleFooter/>
+      <CardsFooter/>
     </>
   );
 }
