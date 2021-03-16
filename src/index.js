@@ -12,6 +12,7 @@ import Landing from "components/landing/Landing.js";
 import Login from "components/auth/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "components/auth/Register.js";
+import Regulation from "components/Regulation/Regulation";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -31,6 +32,11 @@ ReactDOM.render(
         path="/registro/:distance"
         exact
         render={props => <Register {...props} />}
+      />
+      <Route
+        path="/reglamento"
+        exact
+        render={props => <Regulation {...props} />}
       />
       <Redirect to="/" />
     </Switch>

@@ -18,11 +18,11 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Card, Container, Row, Col } from "reactstrap";
+import {Button, Card, Container, Row, Col, CardFooter} from "reactstrap";
 
 // core components
 import Navbar from "components/Navbars/NavBar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import CardsFooter from "components/Footers/CardsFooter";
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -160,7 +160,7 @@ class Profile extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        <CardsFooter />
       </>
     );
   }

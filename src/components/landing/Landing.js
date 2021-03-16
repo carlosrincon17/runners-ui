@@ -36,7 +36,6 @@ class Landing extends React.Component {
         <Navbar />
         <main ref="main">
           <div className="position-relative">
-
             <section className="section section-lg section-shaped section-background pb-250">
               <div className="shape shape-style-1 shape-background-image">
                 <span />
@@ -177,7 +176,7 @@ class Landing extends React.Component {
             <Container>
               <Row className="row-grid align-items-center">
                 <Col md="6">
-                  <Card className="bg-danger shadow border-0">
+                  <Card className="bg-info shadow border-0">
                     <CardImg
                       alt="..."
                       src={require("assets/img/theme/img-2-1200x1000.jpg")}
@@ -191,11 +190,11 @@ class Landing extends React.Component {
                         viewBox="0 0 583 95"
                       >
                         <polygon
-                          className="fill-danger"
+                          className="fill-info"
                           points="0,52 583,95 0,95"
                         />
                         <polygon
-                          className="fill-danger"
+                          className="fill-info"
                           opacity=".2"
                           points="0,42 583,95 683,0 0,95"
                         />
@@ -213,17 +212,19 @@ class Landing extends React.Component {
                 </Col>
                 <Col md="6">
                   <div className="pl-md-5">
-                    <div className="icon icon-lg icon-shape icon-shape-danger shadow rounded-circle mb-5">
+                    <div className="icon icon-lg icon-shape icon-shape-info shadow rounded-circle mb-5">
                       <i className="ni ni-user-run" />
                     </div>
-                    <h3>Ten Presente!</h3>
+                    <h3
+                      className="title-h3"
+                    >Ten Presente!</h3>
                     <p className="lead">
                       Desde el día 1 de marzo del 2021 hasta el 30 de junio del 2021 fecha de cierre de inscripciones,
                       estas estarán abiertas las 24 horas del día, a través de la página web
                     </p>
                     <a
-                      className="font-weight-bold text-danger mt-5"
-                      href="#pablo"
+                      className="font-weight-bold text-info mt-5"
+                      href=""
                       onClick={e => e.preventDefault()}
                     >
                       www.runnerscucuta.com
@@ -238,7 +239,7 @@ class Landing extends React.Component {
             <Container>
               <Row className="justify-content-center text-center mb-lg">
                 <Col lg="8">
-                  <h2 className="display-3">Patrocinado por:</h2>
+                  <h2 className="display-3 title-h3">Patrocinado por:</h2>
                   <p className="lead text-muted">
                    Gracias a ellos podemos hacer posible esta carrera
                   </p>
@@ -258,7 +259,7 @@ class Landing extends React.Component {
                     </div>
 
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Baqueros</span>
                         <small className="h6 text-muted">Basketball Club</small>
                       </h5>
@@ -278,7 +279,7 @@ class Landing extends React.Component {
                     </div>
 
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Color Creativo</span>
                         <small className="h6 text-muted">
                          Agencia de Publicidad
@@ -299,7 +300,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Arroz Zulia</span>
                         <small className="h6 text-muted">Arrocera</small>
                       </h5>
@@ -318,7 +319,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Vida Fit</span>
                         <small className="h6 text-muted">Qtar GYM</small>
                       </h5>
@@ -337,7 +338,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Daimont</span>
                         <small className="h6 text-muted">
                           Calzado
@@ -358,7 +359,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Epicco</span>
                         <small className="h6 text-muted">
                           Restaurante - Bar
@@ -379,7 +380,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Samuel Suarez</span>
                         <small className="h6 text-muted">
                           Medicina con corazón
@@ -400,7 +401,7 @@ class Landing extends React.Component {
                       />
                     </div>
                     <div className="pt-4 text-center">
-                      <h5 className="title">
+                      <h5 className="title-h3">
                         <span className="d-block mb-1">Rentabien</span>
                         <small className="h6 text-muted">
                           Inmobiliaria

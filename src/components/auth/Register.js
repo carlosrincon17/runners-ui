@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import CardsFooter from "components/Footers/CardsFooter";
 import {renderFormInput} from "../../util/input.util";
 import UserService from "../../services/user.service";
 import {MASKS} from "../../util/mask.util";
@@ -137,7 +137,7 @@ const Register = () => {
       <Navbar/>
       <main>
         <section className="section section-shaped section-lg">
-          <div className="shape shape-style-1 bg-gradient-default">
+          <div className="shape shape-style-1 shape-default">
             <span/>
             <span/>
             <span/>
@@ -218,7 +218,7 @@ const Register = () => {
                       <div className="text-center">
                         <Button
                           className="mt-4"
-                          color="primary"
+                          color="info"
                           type="button"
                           onClick={submitRegisterForm}
                           disabled={loadingRegister}
@@ -281,7 +281,7 @@ const Register = () => {
           </Container>
         </section>
       </main>
-      <SimpleFooter/>
+      <CardsFooter/>
     </>
   );
 
