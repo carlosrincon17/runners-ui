@@ -2,6 +2,13 @@
   font-style: oblique;
   font-size: 2.6rem;
 }
+.text-primary-runners {
+  color: $primary-runners;
+
+  &:hover {
+    color: $primary-dark-runners;
+  }
+}
 .title-runners {
   font-family: 'Bangers', cursive;
   font-size: 50px;

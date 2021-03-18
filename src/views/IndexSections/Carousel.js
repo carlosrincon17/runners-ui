@@ -61,9 +61,10 @@ class Carousel extends React.Component {
                   Quienes Somos
                 </h1>
                 <p className="lead text-white mt-4">
-                  Argon Design System comes with four pre-built pages to help
-                  you get started faster. You can change the text and images and
-                  you're good to go.
+                  Somos un equipo de running aficionado y recreativo, que fomenta habitos de vida saludable e impulsa
+                  la cultura running en nuestra región.
+                  <br/>
+                  Tenemos como lema <strong>#YOCORROPORSALUD</strong>.
                 </p>
                 <Button
                   className="btn-white mt-4"
