@@ -8,7 +8,7 @@ import {
   Form,
   Container,
   Row,
-  Col, Badge, Modal, Spinner
+  Col, Badge, Modal, Spinner, Media
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
@@ -19,6 +19,7 @@ import {MASKS} from "../../util/mask.util";
 import RegistrationTypeService from "../../services/registration_type.service";
 import {useHistory, useParams} from "react-router";
 import locations from "../../assets/json/locations";
+import {Link} from "react-router-dom";
 
 const Register = () => {
   let { distance } = useParams();
@@ -86,8 +87,8 @@ const Register = () => {
       });
   }
 
-  const renderInput = (name, label, options = {}) => {
-    return renderFormInput(name, label, handleInputChange, options);
+  const renderInput = (name, label, options = {}, icon = '') => {
+    return renderFormInput(name, label, handleInputChange, options, icon);
   }
 
   const onCloseSuccessModal = () => {
@@ -273,19 +274,19 @@ const Register = () => {
                     </div>
                     <Form role="form">
                       <Row>
-                        {renderInput("first_name", "Nombres")}
-                        {renderInput("last_name", "Apellidos")}
-                        {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'})}
-                        {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date})}
-                        {renderInput("phone_number", "Número Telefoníco", {mask: MASKS.phone})}
+                        {renderInput("first_name", "Nombres", {}, "ni ni-user-run")}
+                        {renderInput("last_name", "Apellidos",{}, "ni ni-user-run")}
+                        {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'}, "fa fa-id-card-o")}
+                        {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date}, "fa fa-calendar")}
+                        {renderInput("phone_number", "Número Telefoníco", {mask: MASKS.phone}, "ni ni-mobile-button")}
                         {renderInput("gender", "Seleccione su genero", {select: true, list: ["Hombre", "Mujer"]})}
                         {renderInput("state", "Seleccione el departamento", {select: true, list: getStates(), onChange: loadCities})}
                         {renderInput("city", "Seleccione su ciudad", {select: true, list: cities})}
-                        {renderInput("address", "Dirección", {fullSize: true})}
+                        {renderInput("address", "Dirección", {fullSize: true}, "fa fa-home")}
                         {renderInput("shirt_size", "Seleccione su talla", {select: true, list: ["XS", "S", "M", "L", "XL"]})}
-                        {renderInput("email", "Email", {fullSize: false})}
-                        {renderInput("password", "Contraseña", {type: 'password'})}
-                        {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'})}
+                        {renderInput("email", "Email", {fullSize: false}, "ni ni-email-83")}
+                        {renderInput("password", "Contraseña", {type: 'password'}, "fa fa-key")}
+                        {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'},"fa fa-key")}
                       </Row>
 
                       {renderRegistrationTypeCards()}
@@ -305,7 +306,8 @@ const Register = () => {
                                 <span>
                                   Estoy de acuerdo con {" "}
                                   <a
-                                    href="#pablo"
+                                    className="text-primary-runners"
+                                    href="http://www.runnerscucuta/reglamento"
                                     onClick={e => e.preventDefault()}
                                   >
                                     Reglamento

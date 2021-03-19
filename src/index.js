@@ -7,7 +7,6 @@ import "assets/vendor/font-awesome/css/font-awesome.min.css";
 import "assets/scss/argon-design-system-react.scss?v1.1.0";
 import "./index.css";
 
-import Index from "views/Index.js";
 import Landing from "components/landing/Landing.js";
 import Login from "components/auth/Login.js";
 import Profile from "components/Profile/Profile.js";

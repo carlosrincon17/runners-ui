@@ -219,7 +219,7 @@ class Landing extends React.Component {
                     </p>
                     <a
                       className="font-weight-bold text-info mt-5"
-                      href=""
+                      href="https://www.runnerscucuta.com"
                       onClick={e => e.preventDefault()}
                     >
                       www.runnerscucuta.com

@@ -51,23 +51,9 @@ class CardsFooter extends React.Component {
               </Col>
               <Col className="text-lg-center btn-wrapper" lg="6">
                 <Button
-                  className="btn-icon-only rounded-circle"
-                  color="twitter"
-                  href="https://twitter.com/creativetim"
-                  id="tooltip475038074"
-                  target="_blank"
-                >
-                  <span className="btn-inner--icon">
-                    <i className="fa fa-twitter" />
-                  </span>
-                </Button>
-                <UncontrolledTooltip delay={0} target="tooltip475038074">
-                  Siguenos
-                </UncontrolledTooltip>
-                <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="facebook"
-                  href="https://www.facebook.com/creativetim"
+                  href="https://web.facebook.com/Runners-C%C3%BAcuta-282001516038466"
                   id="tooltip837440414"
                   target="_blank"
                 >
@@ -76,21 +62,21 @@ class CardsFooter extends React.Component {
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip837440414">
-                  Dale Like
+                  Síguenos en Facebook
                 </UncontrolledTooltip>
                 <Button
                   className="btn-icon-only rounded-circle ml-1"
-                  color="dribbble"
-                  href="https://dribbble.com/creativetim"
+                  color="instagram"
+                  href="https://www.instagram.com/runnerscucuta/"
                   id="tooltip829810202"
                   target="_blank"
                 >
                   <span className="btn-inner--icon">
-                    <i className="fa fa-dribbble" />
+                    <i className="fa fa-instagram" />
                   </span>
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip829810202">
-                  Siguenos
+                  Síguenos en Instagram
                 </UncontrolledTooltip>
               </Col>
             </Row>
