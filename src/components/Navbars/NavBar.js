@@ -5,8 +5,6 @@ import Headroom from "headroom.js";
 import {
   Button,
   UncontrolledCollapse,
-  DropdownMenu,
-  DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
   Media,
@@ -156,7 +154,6 @@ const NavBar = () => {
                     to="/reglamento"
                     tag={Link}
                   >
-                    <i className="ni ni-bullet-list-67 mr-1"/>
                     <span className="nav-link-inner--text">Reglamento</span>
                   </Media>
                 </DropdownToggle>

@@ -2,21 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86f1f32f-b1a4-42fa-be06-c0612be41146" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/json/locations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Regulation/Regulation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Regulation/Regulation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/landing/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landing/Landing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/IndexSections/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/IndexSections/Carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/examples/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/input.util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/input.util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,7 +73,7 @@
       <workItem from="1615769838984" duration="1194000" />
       <workItem from="1615817699127" duration="5741000" />
       <workItem from="1615928668904" duration="1064000" />
-      <workItem from="1616083283405" duration="2779000" />
+      <workItem from="1616083283405" duration="6379000" />
     </task>
     <servers />
   </component>

@@ -17,8 +17,8 @@ import {renderFormInput} from "../../util/input.util";
 import UserService from "../../services/user.service";
 import {MASKS} from "../../util/mask.util";
 import RegistrationTypeService from "../../services/registration_type.service";
-import CurrencyFormat from 'react-currency-format';
 import {useHistory, useParams} from "react-router";
+import locations from "../../assets/json/locations";
 
 const Register = () => {
   let { distance } = useParams();
@@ -32,7 +32,7 @@ const Register = () => {
     city: '',
     state: '',
     repeat_password: '',
-    document_numner: '',
+    document_number: '',
     gender: '',
     shirt_size: '',
     birth_date: ''
@@ -41,6 +41,7 @@ const Register = () => {
   const [selectedRegistrationType, setSelectedRegistrationType] = useState();
   const [loadingRegister, setLoadingRegister] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
+  const [cities, setCities] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -56,11 +57,14 @@ const Register = () => {
     )
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event, callback) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
     })
+    if (callback) {
+      callback(event.target.value);
+    }
   }
 
   const submitRegisterForm = (event) => {
@@ -90,49 +94,146 @@ const Register = () => {
     history.push('/');
   }
 
-  const renderRegistrationTypeDescriptionList = (description) => {
-    return description.split('+').map(item => (
-      <li className="py-2">
-        <div className="d-flex align-items-center">
-          <div>
-            <Badge
-              className="badge-circle mr-3"
-              color="success"
-            >
-              <i className="ni ni-check-bold"/>
-            </Badge>
-          </div>
-          <div>
-            <span className="mb-0">
-              {item}
-            </span>
-          </div>
-        </div>
-      </li>
-    ))
+  const getStates = () => {
+    return locations.map(state => state.departamento);
+  }
+
+  const loadCities = (newValue) => {
+    const state =  locations.find(state => newValue === state.departamento)
+    const citiesState = state ? state.ciudades : [];
+    setCities(citiesState);
   }
 
   const renderRegistrationTypeCards = () => {
-    return registrationTypes.map(registrationType => (
-      <Col lg="4" key={registrationType.id}>
-        <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${registrationType.id === selectedRegistrationType ? 'selected': ''}`}
-           onClick={() => setSelectedRegistrationType(registrationType.id)}>
-          <CardBody className="py-5">
-            <div className="text-center">
-              <span className="text-primary text-uppercase" style={{fontSize: '32px', fontWeight: 700}}>
-                <CurrencyFormat value={registrationType.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /> (COP)
-              </span>
-            </div>
-            <ul className="list-unstyled mt-3">
-              {renderRegistrationTypeDescriptionList(registrationType.description)}
-            </ul>
-            <p className="description text-center bold">
-              <small>{registrationType.limits}</small>
-            </p>
-          </CardBody>
-        </Card>
-      </Col>
-    ));
+    return (
+      <Row>
+        <Col lg="6">
+          <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${1 === selectedRegistrationType ? 'selected': ''}`}
+                onClick={() => setSelectedRegistrationType(1)}>
+            <CardBody className="text-center py-5">
+              <div className="  icon-card icon-shape icon-shape-info rounded-circle mb-4">
+                <h6 className=" title-runners title-h3 text-uppercase">
+                  $35.000
+                </h6>
+              </div>
+              <ul className="list-unstyled">
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="info"
+                      >
+                        <i className="ni ni-trophy" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">
+                        Medalla
+                      </h6>
+                    </div>
+                  </div>
+                </li>
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="info"
+                      >
+                        <i className="ni ni-badge" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">Número de corredor</h6>
+                    </div>
+                  </div>
+                </li>
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="info"
+                      >
+                        <i className="ni ni-box-2" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">
+                        Tula
+                      </h6>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col lg="6">
+          <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${2 === selectedRegistrationType ? 'selected': ''}`}
+                onClick={() => setSelectedRegistrationType(2)}>
+            <CardBody className="text-center py-5">
+              <div className="icon-card icon-shape icon-shape-danger rounded-circle mb-4">
+                <h6 className="text-danger title-runners text-uppercase">
+                  $70.000
+                </h6>
+              </div>
+              <ul className="list-unstyled">
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="danger"
+                      >
+                        <i className="ni ni-trophy" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">
+                        Medalla
+                      </h6>
+                    </div>
+                  </div>
+                </li>
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="danger"
+                      >
+                        <i className="ni ni-badge" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">Número de corredor</h6>
+                    </div>
+                  </div>
+                </li>
+                <li className="py-2">
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <Badge
+                        className="badge-circle mr-3"
+                        color="danger"
+                      >
+                        <i className="ni ni-satisfied" />
+                      </Badge>
+                    </div>
+                    <div>
+                      <h6 className="mb-0">
+                        Camisa Finisher
+                      </h6>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>)
   }
 
   return (
@@ -174,23 +275,20 @@ const Register = () => {
                       <Row>
                         {renderInput("first_name", "Nombres")}
                         {renderInput("last_name", "Apellidos")}
-                        {renderInput("state", "Departamento")}
-                        {renderInput("city", "Ciudad")}
                         {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'})}
                         {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date})}
                         {renderInput("phone_number", "Número Telefoníco", {mask: MASKS.phone})}
-                        {renderInput("address", "Dirección", {size: 'full'})}
-                        {renderInput("email", "Email", {size: 'full'})}
+                        {renderInput("gender", "Seleccione su genero", {select: true, list: ["Hombre", "Mujer"]})}
+                        {renderInput("state", "Seleccione el departamento", {select: true, list: getStates(), onChange: loadCities})}
+                        {renderInput("city", "Seleccione su ciudad", {select: true, list: cities})}
+                        {renderInput("address", "Dirección", {fullSize: true})}
+                        {renderInput("shirt_size", "Seleccione su talla", {select: true, list: ["XS", "S", "M", "L", "XL"]})}
+                        {renderInput("email", "Email", {fullSize: false})}
                         {renderInput("password", "Contraseña", {type: 'password'})}
                         {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'})}
                       </Row>
 
-                      <Row>
-                        <Col md={12}>
-
-                        </Col>
-                        {renderRegistrationTypeCards()}
-                      </Row>
+                      {renderRegistrationTypeCards()}
 
                       <Row className="my-4">
                         <Col xs="12">
