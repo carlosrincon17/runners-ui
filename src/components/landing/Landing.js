@@ -103,8 +103,8 @@ class Landing extends React.Component {
                               5K
                             </h6>
                           </div>
-                          <p className="description mt-3">
-                            CAMINALA O CORRELA, PERO DISFRUTALA
+                          <p className="text-muted mt-3">
+                            <strong>CAMINELA O CORRELA PERO DISFRUTALA</strong>
                           </p>
                           <Button
                             className="mt-4 text-center"
@@ -125,10 +125,8 @@ class Landing extends React.Component {
                               10k
                             </h6>
                           </div>
-                          <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
+                          <p className="text-muted mt-3">
+                            <strong> CORRELA Y SUMA TUS MEJORES TIEMPOS </strong>
                           </p>
                           <Button
                             className="mt-4"
@@ -144,19 +142,17 @@ class Landing extends React.Component {
                     <Col lg="4">
                       <Card className="card-lift--hover shadow border-0">
                         <CardBody className="text-center py-5">
-                          <div className="icon-card icon-shape icon-shape-warning rounded-circle mb-4">
-                            <h6 className="title-runners text-warning text-uppercase">
+                          <div className="icon-card icon-shape icon-shape-info rounded-circle mb-4">
+                            <h6 className="title-runners text-info text-uppercase">
                               21k
                             </h6>
                           </div>
-                          <p className="description mt-3">
-                            Argon is a great free UI package based on Bootstrap
-                            4 that includes the most important components and
-                            features.
+                          <p className="text-muted mt-3">
+                            <strong>TU DISCIPLINA Y DEDICACION HARAN DE ESTOS KILOMETROS TU MEJOR EXPERIENCIA</strong>
                           </p>
                           <Button
                             className="mt-4"
-                            color="warning"
+                            color="info"
                             to={'/registro/20K'}
                             tag={Link}
                           >

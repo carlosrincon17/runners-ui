@@ -25,13 +25,16 @@ const Register = () => {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
-    addess: '',
+    address: '',
     phone_number: '',
     birth_data: '',
     password: '',
+    city: '',
+    state: '',
     repeat_password: '',
     document_numner: '',
-    country: '',
+    gender: '',
+    shirt_size: '',
     birth_date: ''
   })
   const [registrationTypes, setRegistrationTypes] = useState([]);
@@ -171,7 +174,7 @@ const Register = () => {
                       <Row>
                         {renderInput("first_name", "Nombres")}
                         {renderInput("last_name", "Apellidos")}
-                        {renderInput("country", "Pais")}
+                        {renderInput("state", "Departamento")}
                         {renderInput("city", "Ciudad")}
                         {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'})}
                         {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date})}

@@ -10,7 +10,7 @@ import "./index.css";
 import Index from "views/Index.js";
 import Landing from "components/landing/Landing.js";
 import Login from "components/auth/Login.js";
-import Profile from "views/examples/Profile.js";
+import Profile from "components/Profile/Profile.js";
 import Register from "components/auth/Register.js";
 import Regulation from "components/Regulation/Regulation";
 

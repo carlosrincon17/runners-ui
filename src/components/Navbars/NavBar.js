@@ -149,31 +149,17 @@ const NavBar = () => {
             <Nav className="navbar-nav-hover align-items-lg-center" navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle nav>
-                  <i className="ni ni-ui-04 d-lg-none mr-1"/>
-                  <span className="nav-link-inner--text">Formato</span>
+
+                  <Media
+                    className="d-flex text-primary-runners align-items-center"
+                    href=""
+                    to="/reglamento"
+                    tag={Link}
+                  >
+                    <i className="ni ni-bullet-list-67 mr-1"/>
+                    <span className="nav-link-inner--text">Reglamento</span>
+                  </Media>
                 </DropdownToggle>
-                <DropdownMenu className="dropdown-menu-xl">
-                  <div className="dropdown-menu-inner">
-                    <Media
-                      className="d-flex align-items-center"
-                      href=""
-                      to="/reglamento"
-                      tag={Link}
-                    >
-                      <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                        <i className="ni ni-bullet-list-67"/>
-                      </div>
-                      <Media body className="ml-3">
-                        <h6 className="heading text-primary mb-md-1">
-                          Reglamento
-                        </h6>
-                        <p className="description d-none d-md-inline-block mb-0">
-                          Acá podras encontrar el reglamento para nuestra carrera.
-                        </p>
-                      </Media>
-                    </Media>
-                  </div>
-                </DropdownMenu>
               </UncontrolledDropdown>
               {getProfileLink()}
             </Nav>
