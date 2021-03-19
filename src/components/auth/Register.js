@@ -8,7 +8,7 @@ import {
   Form,
   Container,
   Row,
-  Col, Badge, Modal, Spinner
+  Col, Badge, Modal, Spinner, Media
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
@@ -20,6 +20,7 @@ import RegistrationTypeService from "../../services/registration_type.service";
 import {useHistory, useParams} from "react-router";
 import locations from "../../assets/json/locations";
 import CurrencyFormat from 'react-currency-format';
+import {Link} from "react-router-dom";
 
 const Register = () => {
   let { distance } = useParams();
@@ -45,7 +46,16 @@ const Register = () => {
   const [cities, setCities] = useState([]);
   const history = useHistory();
 
+  const eventsData = {
+    "5K": "CAMINALA O CORRELA PERO DISFRUTALA",
+    "10K": "CORRELA Y SUMA TUS MEJORES TIEMPOS",
+    "21K": "TU DISCIPLINA Y DEDICACION HARAN DE ESTOS KILOMETROS TU MEJOR EXPERIENCIA"
+  }
+
   useEffect(() => {
+    if (!eventsData[distance]){
+      history.push('/');
+    }
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     loadRegistrationTypes();
@@ -87,8 +97,8 @@ const Register = () => {
       });
   }
 
-  const renderInput = (name, label, options = {}) => {
-    return renderFormInput(name, label, handleInputChange, options);
+  const renderInput = (name, label, options = {}, icon = '') => {
+    return renderFormInput(name, label, handleInputChange, options, icon);
   }
 
   const onCloseSuccessModal = () => {
@@ -111,8 +121,8 @@ const Register = () => {
         <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${registrationType.id === selectedRegistrationType ? 'selected': ''}`}
               onClick={() => setSelectedRegistrationType(registrationType.id)}>
           <CardBody className="text-center py-5">
-            <div className="  icon-card icon-shape icon-shape-info rounded-circle mb-4">
-              <h6 className=" title-runners title-h3 text-uppercase">
+            <div className={`icon-card icon-shape icon-shape-${registrationType.color} rounded-circle mb-4`}>
+              <h6 className={`text-${registrationType.color} title-runners text-uppercase`}>
                 <CurrencyFormat value={registrationType.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
               </h6>
             </div>
@@ -124,7 +134,7 @@ const Register = () => {
                       <div>
                         <Badge
                           className="badge-circle mr-3"
-                          color="info"
+                          color={`${registrationType.color}`}
                         >
                           <i className={`ni ${item.icon}`} />
                         </Badge>
@@ -165,8 +175,8 @@ const Register = () => {
               <Col lg="12">
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white pb-5">
-                    <div className="text-muted text-center mb-3">
-                      Te estás registrando a la carrera:
+                    <div className="title-runners text-muted text-center mb-3">
+                      <h3>{eventsData[distance]}</h3>
                     </div>
                     <div className="text-center">
                       <div className="icon-card icon-shape icon-shape-warning rounded-circle mb-4">
@@ -177,24 +187,21 @@ const Register = () => {
                     </div>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
-                    <div className="text-center text-muted mb-4">
-                      <small>Ingresa tus datos</small>
-                    </div>
                     <Form role="form">
                       <Row>
-                        {renderInput("first_name", "Nombres")}
-                        {renderInput("last_name", "Apellidos")}
-                        {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'})}
-                        {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date})}
-                        {renderInput("phone_number", "Número Telefoníco", {mask: MASKS.phone})}
+                        {renderInput("first_name", "Nombres", {}, "ni ni-user-run")}
+                        {renderInput("last_name", "Apellidos",{}, "ni ni-user-run")}
+                        {renderInput("document_number", "Número de Documento", {pattern: '[0-9]*'}, "fa fa-id-card-o")}
+                        {renderInput("birth_date", "Fecha de Nacimiento", {mask: MASKS.date}, "fa fa-calendar")}
+                        {renderInput("phone_number", "Número Telefoníco", {mask: MASKS.phone}, "ni ni-mobile-button")}
                         {renderInput("gender", "Seleccione su genero", {select: true, list: ["Hombre", "Mujer"]})}
                         {renderInput("state", "Seleccione el departamento", {select: true, list: getStates(), onChange: loadCities})}
                         {renderInput("city", "Seleccione su ciudad", {select: true, list: cities})}
-                        {renderInput("address", "Dirección", {fullSize: true})}
+                        {renderInput("address", "Dirección", {fullSize: true}, "fa fa-home")}
                         {renderInput("shirt_size", "Seleccione su talla", {select: true, list: ["XS", "S", "M", "L", "XL"]})}
-                        {renderInput("email", "Email", {fullSize: false})}
-                        {renderInput("password", "Contraseña", {type: 'password'})}
-                        {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'})}
+                        {renderInput("email", "Email", {fullSize: false}, "ni ni-email-83")}
+                        {renderInput("password", "Contraseña", {type: 'password'}, "fa fa-key")}
+                        {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'},"fa fa-key")}
                       </Row>
                       <Row>
                         {renderRegistrationTypeCards()}
@@ -213,12 +220,14 @@ const Register = () => {
                             >
                                 <span>
                                   Estoy de acuerdo con {" "}
-                                  <a
-                                    href="#pablo"
-                                    onClick={e => e.preventDefault()}
+                                  <Link
+                                    className="text-primary-runners"
+                                    to="/reglamento"
+                                    tag={Link}
+                                    target={"_blank"}
                                   >
                                     Reglamento
-                                  </a> {" "}
+                                  </Link> {" "}
                                   de la competencia.
                                 </span>
                             </label>

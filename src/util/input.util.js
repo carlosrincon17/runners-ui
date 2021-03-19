@@ -8,7 +8,7 @@ import {
   Input
 } from "reactstrap";
 
-const renderFormInput = (name, label, handleInputChange, options = {}) => {
+const renderFormInput = (name, label, handleInputChange, options = {}, icon) => {
   const {select, list} = options;
   const id = `form-input${name}`;
   let input = (
@@ -17,6 +17,7 @@ const renderFormInput = (name, label, handleInputChange, options = {}) => {
            onChange={handleInputChange}
            placeholder={label}
            className="form-control"
+
     />
   );
   if (options.mask) {
@@ -50,7 +51,7 @@ const renderFormInput = (name, label, handleInputChange, options = {}) => {
       <InputGroup className="input-group-alternative mb-3 input-group">
         <InputGroupAddon addonType="prepend">
           <InputGroupText>
-            <i className="ni ni-hat-3"/>
+            <i className={icon}/>
           </InputGroupText>
         </InputGroupAddon>
         {input}

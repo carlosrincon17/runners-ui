@@ -5,23 +5,28 @@ import Female from "assets/img/female.png";
 import Male from "assets/img/male.png";
 
 import Navbar from "components/Navbars/NavBar.js";
-import UserService from "../../services/user.service";
 import CardsFooter from "components/Footers/CardsFooter";
+import EventRegistrationService from "../../services/event_registration.service";
 
-const Profile = () => {
+const Admin = () => {
 
-  const [user, setUser] = useState();
+  const [eventRegistrationSummary, setEventRegistrationSummary] = useState([]);
+  const eventNames = [
+    "PAGO PENDIENTE",
+    "VALIDACIÓN DE PAGO PENDIENTE",
+    "",
+  ]
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    loadUserData();
+    loadSummary();
   }, []);
 
-  const loadUserData = () => {
-    const userService = new UserService();
-    userService.getUser()
-      .then(response => setUser(response.data))
+  const loadSummary = () => {
+    const eventRegistrationService = new EventRegistrationService();
+    eventRegistrationService.getSummary()
+      .then(response => setEventRegistrationSummary(response.data))
       .catch(() => {});
   };
 
@@ -158,4 +163,4 @@ const Profile = () => {
   );
 }
 
-export default Profile;
+export default Admin;

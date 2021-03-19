@@ -1,4 +1,3 @@
-import axios from "axios";
 import BaseService from "./base.service";
 
 class RegistrationTypeService extends BaseService {

@@ -2,7 +2,6 @@
 import React from "react";
 import {
   Badge,
-  Button,
   Card,
   CardBody,
   CardImg,
@@ -13,7 +12,7 @@ import {
 
 import Navbar from "components/Navbars/NavBar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
-import Carrera from "assets/img/brand/carrera.png"
+import Carrera from "assets/img/brand/carrera_runners.jpeg"
 
 class Regulation extends React.Component {
   state = {};
@@ -50,7 +49,7 @@ class Regulation extends React.Component {
                       <h1 className="text-white title-runners font-weight-light">
                         Nuestro Reglamento
                       </h1>
-                      <p className="text-white description d-none d-md-inline-block mb-0">
+                      <p className="text-white text-muted d-none d-md-inline-block mb-0">
                         Acá podras encontrar el reglamento para nuestra carrera.
                       </p>
                     </Col>
@@ -163,7 +162,7 @@ class Regulation extends React.Component {
                     </p>
                     <a
                       className="font-weight-bold text-info mt-5"
-                      href="#pablo"
+                      href="http://www.runnerscucuta.com/"
                       onClick={e => e.preventDefault()}
                     >
                       www.runnerscucuta.com
@@ -201,7 +200,7 @@ class Regulation extends React.Component {
                     <h1 className="text-white title-runners font-weight-light">
                       Costo de las inscripciones
                     </h1>
-                    <p className="text-white description d-none d-md-inline-block mb-0">
+                    <p className="text-white text-muted d-none d-md-inline-block mb-0">
                       Las tarifas son de acuerdo a la opción escogida:
                     </p>
                     <br/>
@@ -298,6 +297,9 @@ class Regulation extends React.Component {
                               </div>
                             </li>
                           </ul>
+                          <p className="description">
+                            Envio incluido
+                          </p>
                         </CardBody>
                       </Card>
                     </Col>
@@ -359,7 +361,27 @@ class Regulation extends React.Component {
                                 </div>
                               </div>
                             </li>
+                            <li className="py-2">
+                              <div className="d-flex align-items-center">
+                                <div>
+                                  <Badge
+                                    className="badge-circle mr-3"
+                                    color="danger"
+                                  >
+                                    <i className="ni ni-box-2" />
+                                  </Badge>
+                                </div>
+                                <div>
+                                  <h6 className="mb-0">
+                                    Tula
+                                  </h6>
+                                </div>
+                              </div>
+                            </li>
                           </ul>
+                          <p className="description">
+                            Envio incluido
+                          </p>
                         </CardBody>
                       </Card>
                     </Col>
@@ -379,7 +401,7 @@ class Regulation extends React.Component {
                       </h3>
                       <p className="lead text-white mt-3">
                         las personas en situación de discapacidad que deseen participar tendrán un descuento especial
-                        en el valor del kit de competencia (opción 2), deben comunicarse con la organización de
+                        en el valor del kit de competencia (opción $70.000), deben comunicarse con la organización de
                         Runnerscucuta por medio de  un mensaje al e-mail <strong> runnerscucuta@gmail.com</strong>
                       </p>
                     </Col>

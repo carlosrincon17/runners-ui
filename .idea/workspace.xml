@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86f1f32f-b1a4-42fa-be06-c0612be41146" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/female.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/male.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/brand/carrera_runners.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Admin/Admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/event_registration.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/utilities/spacing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/utilities/spacing.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/CardsFooter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Regulation/Regulation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Regulation/Regulation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/landing/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/landing/Landing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/registration_type.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/registration_type.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/input.util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/input.util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/services" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -57,6 +65,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\apps\runners\runners-ui\src\services" />
+      <recent name="D:\apps\runners\runners-ui\src\components" />
       <recent name="D:\apps\runners\runners-ui\src\assets\img" />
       <recent name="D:\Runners\runners-ui\src\components\Regulation" />
     </key>
@@ -75,7 +85,7 @@
       <workItem from="1615769838984" duration="1194000" />
       <workItem from="1615817699127" duration="5741000" />
       <workItem from="1615928668904" duration="1064000" />
-      <workItem from="1616083283405" duration="10016000" />
+      <workItem from="1616083283405" duration="19850000" />
     </task>
     <servers />
   </component>
