@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86f1f32f-b1a4-42fa-be06-c0612be41146" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/json/locations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/female.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/male.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/argon-design-system/utilities/spacing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/argon-design-system/utilities/spacing.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/input.util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/input.util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -56,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\apps\runners\runners-ui\src\assets\img" />
       <recent name="D:\Runners\runners-ui\src\components\Regulation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -73,12 +75,22 @@
       <workItem from="1615769838984" duration="1194000" />
       <workItem from="1615817699127" duration="5741000" />
       <workItem from="1615928668904" duration="1064000" />
-      <workItem from="1616083283405" duration="6379000" />
+      <workItem from="1616083283405" duration="10016000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

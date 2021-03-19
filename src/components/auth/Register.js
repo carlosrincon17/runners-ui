@@ -19,6 +19,7 @@ import {MASKS} from "../../util/mask.util";
 import RegistrationTypeService from "../../services/registration_type.service";
 import {useHistory, useParams} from "react-router";
 import locations from "../../assets/json/locations";
+import CurrencyFormat from 'react-currency-format';
 
 const Register = () => {
   let { distance } = useParams();
@@ -105,135 +106,43 @@ const Register = () => {
   }
 
   const renderRegistrationTypeCards = () => {
-    return (
-      <Row>
-        <Col lg="6">
-          <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${1 === selectedRegistrationType ? 'selected': ''}`}
-                onClick={() => setSelectedRegistrationType(1)}>
-            <CardBody className="text-center py-5">
-              <div className="  icon-card icon-shape icon-shape-info rounded-circle mb-4">
-                <h6 className=" title-runners title-h3 text-uppercase">
-                  $35.000
-                </h6>
-              </div>
-              <ul className="list-unstyled">
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="info"
-                      >
-                        <i className="ni ni-trophy" />
-                      </Badge>
+    return registrationTypes.map(registrationType => (
+      <Col lg="6">
+        <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${registrationType.id === selectedRegistrationType ? 'selected': ''}`}
+              onClick={() => setSelectedRegistrationType(registrationType.id)}>
+          <CardBody className="text-center py-5">
+            <div className="  icon-card icon-shape icon-shape-info rounded-circle mb-4">
+              <h6 className=" title-runners title-h3 text-uppercase">
+                <CurrencyFormat value={registrationType.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+              </h6>
+            </div>
+            <ul className="list-unstyled">
+              {JSON.parse(registrationType.description).map(item => {
+                return (
+                  <li className="py-2">
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <Badge
+                          className="badge-circle mr-3"
+                          color="info"
+                        >
+                          <i className={`ni ${item.icon}`} />
+                        </Badge>
+                      </div>
+                      <div>
+                        <h6 className="mb-0">
+                          {item.name}
+                        </h6>
+                      </div>
                     </div>
-                    <div>
-                      <h6 className="mb-0">
-                        Medalla
-                      </h6>
-                    </div>
-                  </div>
-                </li>
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="info"
-                      >
-                        <i className="ni ni-badge" />
-                      </Badge>
-                    </div>
-                    <div>
-                      <h6 className="mb-0">Número de corredor</h6>
-                    </div>
-                  </div>
-                </li>
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="info"
-                      >
-                        <i className="ni ni-box-2" />
-                      </Badge>
-                    </div>
-                    <div>
-                      <h6 className="mb-0">
-                        Tula
-                      </h6>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col lg="6">
-          <Card className={`card-lift--hover shadow border-0 card-select-registration-type ${2 === selectedRegistrationType ? 'selected': ''}`}
-                onClick={() => setSelectedRegistrationType(2)}>
-            <CardBody className="text-center py-5">
-              <div className="icon-card icon-shape icon-shape-danger rounded-circle mb-4">
-                <h6 className="text-danger title-runners text-uppercase">
-                  $70.000
-                </h6>
-              </div>
-              <ul className="list-unstyled">
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="danger"
-                      >
-                        <i className="ni ni-trophy" />
-                      </Badge>
-                    </div>
-                    <div>
-                      <h6 className="mb-0">
-                        Medalla
-                      </h6>
-                    </div>
-                  </div>
-                </li>
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="danger"
-                      >
-                        <i className="ni ni-badge" />
-                      </Badge>
-                    </div>
-                    <div>
-                      <h6 className="mb-0">Número de corredor</h6>
-                    </div>
-                  </div>
-                </li>
-                <li className="py-2">
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <Badge
-                        className="badge-circle mr-3"
-                        color="danger"
-                      >
-                        <i className="ni ni-satisfied" />
-                      </Badge>
-                    </div>
-                    <div>
-                      <h6 className="mb-0">
-                        Camisa Finisher
-                      </h6>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>)
+                  </li>
+                )
+              })}
+            </ul>
+          </CardBody>
+        </Card>
+      </Col>
+    ));
   }
 
   return (
@@ -287,9 +196,9 @@ const Register = () => {
                         {renderInput("password", "Contraseña", {type: 'password'})}
                         {renderInput("repeat_password", "Repite tu contraseña", {type: 'password'})}
                       </Row>
-
-                      {renderRegistrationTypeCards()}
-
+                      <Row>
+                        {renderRegistrationTypeCards()}
+                      </Row>
                       <Row className="my-4">
                         <Col xs="12">
                           <div className="custom-control custom-control-alternative custom-checkbox">
