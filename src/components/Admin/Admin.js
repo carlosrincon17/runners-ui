@@ -1,34 +1,146 @@
 import React, {useEffect, useState} from "react";
 
-import {Card, Container, Row, Col, Badge, CardBody} from "reactstrap";
-import Female from "assets/img/female.png";
-import Male from "assets/img/male.png";
+import {Card, Container, Row, Col, CardBody, Alert, Button, UncontrolledTooltip} from "reactstrap";
+import DataTable from 'react-data-table-component';
 
 import Navbar from "components/Navbars/NavBar.js";
 import CardsFooter from "components/Footers/CardsFooter";
 import EventRegistrationService from "../../services/event_registration.service";
+import CurrencyFormat from "react-currency-format";
+import {customStyles} from "../../util/data_table.util";
 
 const Admin = () => {
 
   const [eventRegistrationSummary, setEventRegistrationSummary] = useState([]);
+  const [inscriptions, setInscriptions] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("PAGO PENDIENTE");
+  const eventRegistrationService = new EventRegistrationService();
   const eventNames = [
     "PAGO PENDIENTE",
     "VALIDACIÓN DE PAGO PENDIENTE",
-    "",
-  ]
+    "INSCRIPCIÓN FINALIZADA",
+  ];
+
+
+  const columns = React.useMemo(() => [
+    {
+      name: 'Nombres',
+      selector: 'first_name',
+      sortable: true,
+    },
+    {
+      name: 'Apellidos',
+      selector: 'last_name',
+      sortable: true,
+    },
+    {
+      name: 'Distancia',
+      selector: 'distance',
+      sortable: true,
+    },
+    {
+      name: 'Tipo de inscripción',
+      selector: 'registration_type_amount',
+      sortable: true,
+      cell: row => (<CurrencyFormat value={row.registration_type_amount} displayType={'text'} thousandSeparator={true}
+                                    prefix={'$'}/>)
+    },
+    {
+      name: 'Documento',
+      selector: 'document_number',
+      sortable: true,
+    },
+    {
+      name: 'Talla',
+      selector: 'shirt_size',
+      sortable: true,
+    },
+    {
+      name: 'Genero',
+      selector: 'gender',
+      sortable: true,
+    },
+    {
+      name: 'Opciones',
+      selector: '',
+      sortable: true,
+      cell: row => getApproveButton(row),
+      omit: selectedStatus !== "VALIDACIÓN DE PAGO PENDIENTE"
+    }
+  ], [selectedStatus]);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     loadSummary();
+    getInscriptions(eventNames[0])
   }, []);
 
   const loadSummary = () => {
-    const eventRegistrationService = new EventRegistrationService();
     eventRegistrationService.getSummary()
       .then(response => setEventRegistrationSummary(response.data))
-      .catch(() => {});
+      .catch(() => {
+      });
   };
+
+  const getApproveButton = (row) => {
+    return (
+      <>
+        <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
+                id="approve-button">
+        <span className="btn-inner--icon">
+            <i className="ni ni-check-bold"/>
+        </span>
+        </Button>
+        <UncontrolledTooltip
+          delay={0}
+          placement="top"
+          target="approve-button"
+        >
+          Aprobar
+        </UncontrolledTooltip>
+      </>
+    )
+  };
+
+  const getInscriptions = (status) => {
+    const filterData = {
+      status: status
+    };
+    setSelectedStatus(status);
+    eventRegistrationService.getRegistrationByFilter(filterData)
+      .then(response => setInscriptions(response.data))
+      .catch(() => {
+      });
+  };
+
+  const selectStatus = (eventName) => {
+    getInscriptions(eventName);
+  };
+
+  const getEventTypeContainer = (eventName) => {
+    const eventSummary = eventRegistrationSummary.find(
+      eventRegistrationSummaryItem => eventRegistrationSummaryItem.status === eventName
+    );
+    return (
+      <Col lg="4">
+        <Card
+          className={`card-lift--hover shadow border-0 card-select-registration-type ${eventName === selectedStatus ? 'selected-info' : ''}`}
+          onClick={() => selectStatus(eventName)}>
+          <CardBody className="text-center py-5">
+            <div className={`icon-card icon-shape icon-shape-info rounded-circle mb-4`}>
+              <h6 className={`text-info title-runners text-uppercase`}>
+                {eventSummary?.total || 0}
+              </h6>
+            </div>
+            <div className={"text-center"}>
+              {eventName}
+            </div>
+          </CardBody>
+        </Card>
+      </Col>
+    )
+  }
 
   return (
     <>
@@ -61,104 +173,34 @@ const Admin = () => {
         </section>
         <section className="section">
           <Container>
-            <Card className="card-profile shadow mt--400">
-              <div className="px-4">
-                <Row className="justify-content-center">
-                  <Col className="order-lg-2" lg="3">
-                    <div className="card-profile-image">
-                      <a href="#pablo" onClick={e => e.preventDefault()}>
-                        <img
-                          alt="..."
-                          className="rounded-circle"
-                          src={user?.gender === 'Mujer' ? Female : Male}
-                        />
-                      </a>
-                    </div>
-                  </Col>
-                  <Col
-                    className="order-lg-3 text-lg-right align-self-lg-center"
-                    lg="4"
-                  >
-                    <div className="card-profile-actions py-4 mt-lg-0">
-                      <Badge color="success" pill>Activo</Badge>
-                    </div>
-                  </Col>
-                  <Col className="order-lg-1" lg="4">
-                    <div className="card-profile-stats d-flex justify-content-center">
-                      <div>
-                        <span className="heading">{user?.gender}</span>
-                        <span className="description">Genero</span>
-                      </div>
-                      <div>
-                        <span className="heading">{user?.shirt_size}</span>
-                        <span className="description">Talla</span>
-                      </div>
-                      <div>
-                        <span className="heading">27</span>
-                        <span className="description">Edad</span>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-                <div className="text-center mt-5 mb-5">
-                  <h3>
-                    {`${user?.first_name} ${user?.last_name}`}
-                  </h3>
-                  <div className="h6 font-weight-300">
-                    <i className="ni location_pin mr-2"/>
-                    {user?.address}
-                  </div>
-                  <div className="h6 font-weight-300">
-                    <i className="ni location_pin mr-2"/>
-                    {user?.city}, {user?.state}
-                  </div>
-                  <div className="h6 mt-4">
-                    <i className="ni business_briefcase-24 mr-2"/>
-                    Email: {user?.email}
-                  </div>
-                  <div>
-                    <i className="ni education_hat mr-2"/>
-                    Celular: {user?.phone_number}
-                  </div>
-                </div>
-              </div>
-            </Card>
+            <div className={"mt--400"}>
+              <Row>
+                {eventNames.map(getEventTypeContainer)}
+              </Row>
+            </div>
 
             <Card className="shadow border-0 mt-3">
               <CardBody className="py-5">
                 <Row>
-                  <div className="col-xs-12 col-md-1 text-center">
-                    <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                      <i className="fa fa-exclamation-triangle" />
-                    </div>
-                  </div>
-                  <div className={"col-xs-12 col-md-11"}>
-                    <h6 className="text-warning text-uppercase title-runners" style={{fontSize: '35px'}}>
-                      Inscripción Pendiente de pago
-                    </h6>
-                  </div>
+                  <Col lg="12">
+                    <DataTable
+                      title={selectedStatus}
+                      columns={columns}
+                      data={inscriptions}
+                      pagination
+                      customStyles={customStyles}
+                      noDataComponent={<Alert color="default" className={"mt-3"}>
+                        No existen inscripciones en el estado: <strong>{selectedStatus}</strong>
+                      </Alert>}
+                    />
+                  </Col>
                 </Row>
-                <p className="description mt-3">
-                  Recuerda que para finalizar la inscripción debes realizar una consignación
-                  a la cuenta AUTORIZADA de ahorro a la mano Bancolombia 03115148995
-                </p>
-                <div>
-                  <Badge color="warning" pill className="mr-1">
-                    marketing
-                  </Badge>
-                  <Badge color="warning" pill className="mr-1">
-                    product
-                  </Badge>
-                  <Badge color="warning" pill className="mr-1">
-                    launch
-                  </Badge>
-                </div>
               </CardBody>
             </Card>
           </Container>
         </section>
       </main>
-      <CardsFooter />
+      <CardsFooter/>
     </>
   );
 }

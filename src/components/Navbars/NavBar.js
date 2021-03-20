@@ -94,7 +94,7 @@ const NavBar = () => {
     if (isUserLoggedIn()) {
       return (
         <UncontrolledDropdown nav>
-          <DropdownToggle nav to="/profile-page" tag={Link}>
+          <DropdownToggle nav to="/admin" tag={Link}>
             <i className="ni ni-collection d-lg-none mr-1"/>
             <span className="nav-link-inner--text">Administración</span>
           </DropdownToggle>

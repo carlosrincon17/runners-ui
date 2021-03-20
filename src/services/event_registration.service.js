@@ -10,6 +10,10 @@ class EventRegistrationService extends BaseService {
     getSummary() {
         return this.apiHelper.get(`${this.moduleUrl}/summary`);
     }
+
+    getRegistrationByFilter(filter) {
+        return this.apiHelper.post(`${this.moduleUrl}/filter`, filter);
+    }
 }
 
 export default EventRegistrationService;

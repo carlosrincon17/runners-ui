@@ -31,6 +31,11 @@
     border-width: 2px !important;
     border-color: $primary-runners !important;
   }
+  &.selected-info {
+    border-style: solid !important;
+    border-width: 4px !important;
+    border-color: #BF55BD  !important;
+  }
 }
 .img-sponsor {
   width: 180px;

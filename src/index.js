@@ -13,6 +13,7 @@ import Login from "components/auth/Login.js";
 import Profile from "components/Profile/Profile.js";
 import Register from "components/auth/Register.js";
 import Regulation from "components/Regulation/Regulation";
+import Admin from "./components/Admin/Admin";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ ReactDOM.render(
         render={props => <Landing {...props} />}
       />
       <Route path="/login" exact render={props => <Login {...props} />} />
+      <Route path="/admin" exact render={props => <Admin {...props} />} />
       <Route
         path="/profile-page"
         exact
