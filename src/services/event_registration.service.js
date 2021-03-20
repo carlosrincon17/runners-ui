@@ -27,6 +27,12 @@ class EventRegistrationService extends BaseService {
             headers: {'Authorization': 'Bearer ' + LocalStorageUtil.getItem(LocalStorageUtil.TOKEN_KEY)}
         });
     }
+
+    approve(id) {
+        return this.apiHelper.put(`${this.moduleUrl}/${id}/approve-payment`, {}, {
+            headers: {'Authorization': 'Bearer ' + LocalStorageUtil.getItem(LocalStorageUtil.TOKEN_KEY)}
+        });
+    }
 }
 
 export default EventRegistrationService;

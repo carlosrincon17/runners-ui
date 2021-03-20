@@ -83,11 +83,21 @@ const Admin = () => {
       });
   };
 
+  const approveEventRegistration = (id) => {
+    const eventRegistrationService = new EventRegistrationService();
+    eventRegistrationService.approve(id)
+      .then(response => {
+        loadSummary();
+        getInscriptions(selectedStatus);
+      })
+      .catch(error => console.log(error));
+  }
+
   const getApproveButton = (row) => {
     return (
       <>
         <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
-                id="approve-button">
+                id="approve-button" onClick={() => approveEventRegistration(row.event_registration_id)}>
         <span className="btn-inner--icon">
             <i className="ni ni-check-bold"/>
         </span>

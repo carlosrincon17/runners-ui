@@ -79,7 +79,7 @@ const Profile = () => {
   };
 
   const onCloseSuccessModal = () => {
-    history.push('/');
+    getEventRegistration();
   }
 
   const validateStatusPayment = () => {
