@@ -19,6 +19,7 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 import LocalStorageUtil from "../../util/localstorage.util";
+import {useHistory} from "react-router";
 
 const NavBar = () => {
 
@@ -26,6 +27,7 @@ const NavBar = () => {
     collapseClasses: "",
     collapseOpen: false
   });
+  const history = useHistory();
 
   useEffect(() => {
     let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -40,7 +42,7 @@ const NavBar = () => {
   const onLogoutClick = () => {
     LocalStorageUtil.removeItem(LocalStorageUtil.TOKEN_KEY);
     LocalStorageUtil.removeItem(LocalStorageUtil.ACCESS_TIME);
-    window.location.reload(false);
+    history.push('/');
   }
 
   const getLoginButton = () => {

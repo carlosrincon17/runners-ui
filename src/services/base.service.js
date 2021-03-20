@@ -4,7 +4,7 @@ class BaseService {
 
     constructor() {
         this.apiHelper = axios.create({
-            baseURL: 'http://localhost:8000/',
+            baseURL: 'http://143.198.233.112:8000/',
             timeout: 10000,
         });
     }

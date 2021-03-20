@@ -17,6 +17,10 @@ class UserService extends BaseService {
             headers: {'Authorization': 'Bearer ' + LocalStorageUtil.getItem(LocalStorageUtil.TOKEN_KEY)}
         });
     }
+
+    uploadFile(file) {
+        return this.apiHelper.post()
+    }
 }
 
 export default UserService;

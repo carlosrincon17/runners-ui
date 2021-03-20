@@ -55,7 +55,7 @@ const Login = () => {
     const {data} = response;
     LocalStorageUtil.setItem(LocalStorageUtil.TOKEN_KEY, data.access_token);
     LocalStorageUtil.setItem(LocalStorageUtil.ACCESS_TIME, new Date());
-    history.push('/');
+    history.push('/profile-page');
   };
 
   const onAuthenticateUserError = (error) => {

@@ -8,7 +8,7 @@ import {
   Form,
   Container,
   Row,
-  Col, Badge, Modal, Spinner, Media
+  Col, Badge, Modal, Spinner
 } from "reactstrap";
 
 import Navbar from "components/Navbars/NavBar.js";
@@ -89,12 +89,11 @@ const Register = () => {
     userService.createUser(requestData)
       .then(data => {
         setNotificationModal(true);
-        setLoadingRegister(false);
       })
       .catch(error => {
         console.error(error)
-        setLoadingRegister(false);
-      });
+      })
+      .finally(() => setLoadingRegister(false));
   }
 
   const renderInput = (name, label, options = {}, icon = '') => {
