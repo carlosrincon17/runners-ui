@@ -55,7 +55,12 @@ const Login = () => {
     const {data} = response;
     LocalStorageUtil.setItem(LocalStorageUtil.TOKEN_KEY, data.access_token);
     LocalStorageUtil.setItem(LocalStorageUtil.ACCESS_TIME, new Date());
-    history.push('/profile-page');
+    LocalStorageUtil.setItem(LocalStorageUtil.IS_ADMIN, data.is_admin);
+    if (data.is_admin) {
+      history.push('/admin');
+    } else {
+      history.push('/profile-page');
+    }
   };
 
   const onAuthenticateUserError = (error) => {

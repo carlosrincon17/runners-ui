@@ -80,6 +80,7 @@ const Profile = () => {
 
   const onCloseSuccessModal = () => {
     getEventRegistration();
+    setNotifyModal(false);
   }
 
   const validateStatusPayment = () => {

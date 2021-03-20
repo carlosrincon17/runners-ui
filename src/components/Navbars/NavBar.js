@@ -39,9 +39,15 @@ const NavBar = () => {
     return !(token === undefined || token === '' || token === null);
   }
 
+  const isAdmin = () => {
+    const isAdmin = LocalStorageUtil.getItem(LocalStorageUtil.IS_ADMIN);
+    return isAdmin === 'true';
+  }
+
   const onLogoutClick = () => {
     LocalStorageUtil.removeItem(LocalStorageUtil.TOKEN_KEY);
     LocalStorageUtil.removeItem(LocalStorageUtil.ACCESS_TIME);
+    LocalStorageUtil.removeItem(LocalStorageUtil.IS_ADMIN);
     history.push('/');
   }
 
@@ -79,7 +85,7 @@ const NavBar = () => {
   }
 
   const getProfileLink = () => {
-    if (isUserLoggedIn()) {
+    if (isUserLoggedIn() && !isAdmin()) {
       return (
         <UncontrolledDropdown nav>
           <DropdownToggle nav to="/profile-page" tag={Link}>
@@ -93,7 +99,7 @@ const NavBar = () => {
   }
 
   const getAdminLink = () => {
-    if (isUserLoggedIn()) {
+    if (isUserLoggedIn() && isAdmin()) {
       return (
         <UncontrolledDropdown nav>
           <DropdownToggle nav to="/admin" tag={Link}>
