@@ -12,7 +12,7 @@ import {
   Label,
   Input,
   FormText,
-  Button
+  Button, Modal
 } from "reactstrap";
 import Female from "assets/img/female.png";
 import Male from "assets/img/male.png";
@@ -20,38 +20,127 @@ import Male from "assets/img/male.png";
 import Navbar from "components/Navbars/NavBar.js";
 import UserService from "../../services/user.service";
 import CardsFooter from "components/Footers/CardsFooter";
+import {useHistory} from "react-router";
+import EventRegistrationService from "../../services/event_registration.service";
+import CurrencyFormat from "react-currency-format";
 
 const Profile = () => {
 
   const [user, setUser] = useState();
-  const [loadingRegister, setLoadingRegister] = useState(false);
+  const [eventRegistration, setEventRegistration] = useState();
+  const history = useHistory();
+  const [loadingUser, setLoadingUser] = useState(false);
+  const [loadingUpload, setLoadingUpload] = useState(false);
+  const [notifyModal, setNotifyModal] = useState(false);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     loadUserData();
+    getEventRegistration()
 
   }, []);
 
   const uploadFile = () => {
-    const userService = new UserService();
-
-
+    const eventRegistrationService = new EventRegistrationService();
+    setLoadingUpload(true);
+    eventRegistrationService.uploadFile(eventRegistration.id)
+      .then(response => {
+        if(response.data) {
+          setNotifyModal(true)
+        }
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        setLoadingUpload(false)
+      })
   }
 
   const loadUserData = () => {
     const userService = new UserService();
-    setLoadingRegister(true);
+    setLoadingUser(true);
     userService.getUser()
       .then(response => {
         setUser(response.data)
       })
       .catch(() => {})
-      .finally(() => setLoadingRegister(false))
+      .finally(() => setLoadingUser(false))
   };
 
+  const getEventRegistration = () => {
+    const eventRegistrationService = new EventRegistrationService();
+    setLoadingUser(true);
+    eventRegistrationService.getEventRegistration()
+      .then(response => {
+        setEventRegistration(response.data)
+      })
+      .catch(() => {})
+      .finally(() => setLoadingUser(false))
+  };
+
+  const onCloseSuccessModal = () => {
+    history.push('/');
+  }
+
+  const validateStatusPayment = () => {
+    if(eventRegistration?.status === 'PAGO PENDIENTE') {
+      return (
+        <Card className="shadow border-0 mt-3">
+          <CardBody className="py-5">
+            <Row>
+              <div className="col-xs-12 col-md-1 text-center">
+                <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
+                  <i className="fa fa-exclamation-triangle" />
+                </div>
+              </div>
+              <div className={"col-xs-12 col-md-11"}>
+                <h6 className="text-warning text-uppercase title-runners" style={{fontSize: '35px'}}>
+                  Inscripción Pendiente de pago
+                </h6>
+              </div>
+            </Row>
+            <p className="description mt-3">
+              Recuerda que para finalizar la inscripción debes realizar una consignación
+              a la cuenta AUTORIZADA de ahorro a la mano Bancolombia 03115148995
+            </p>
+            <div>
+              <FormGroup>
+                <Input className="text-right" type="file" name="file" id="exampleFile" />
+                <FormText color="muted">
+                  Seleccione acá el comprobante de pago de la inscripción
+                </FormText>
+              </FormGroup>
+              <div className="justify-content-end text-right">
+                <Button
+                  className="mt-4"
+                  color="warning"
+                  type="button"
+                  onClick={uploadFile}
+                  disabled={loadingUpload}
+                >
+                  <i className="ni ni-cloud-upload-96" />
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className={loadingUpload ? '': 'd-none'}
+                  />
+                  {' '}
+                  Subir Archivo de Pago
+                </Button>
+              </div>
+
+            </div>
+          </CardBody>
+        </Card>
+      )
+    }
+  }
+
   const getUserCards = () => {
-    if(loadingRegister) {
+    if(loadingUser) {
       return (
         <section className="section">
           <Container className="text-center">
@@ -86,9 +175,17 @@ const Profile = () => {
                   className="order-lg-3 text-lg-right align-self-lg-center"
                   lg="4"
                 >
-                  <div className="card-profile-actions py-4 mt-lg-0">
-                    <Badge color="success" pill>Activo</Badge>
-                    <Badge color="warning" pill>Pendiente Pago</Badge>
+                  <div className="card-profile-stats d-flex justify-content-center">
+                    <div>
+                      <span className="heading">{eventRegistration?.distance}</span>
+                      <span className="description">Distancia</span>
+                    </div>
+                    <div>
+                      <span className="heading">
+                        <CurrencyFormat value={eventRegistration?.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                        </span>
+                      <span className="description">Valor de inscripción</span>
+                    </div>
                   </div>
                 </Col>
                 <Col className="order-lg-1" lg="4">
@@ -128,74 +225,10 @@ const Profile = () => {
                   <i className="ni education_hat mr-2"/>
                   Celular: {user?.phone_number}
                 </div>
-                <div className="h6 mt-4">
-                  <i className="ni education_hat mr-2"/>
-                  Tipo de inscripción: {user?.amount}
-                </div>
-                <div>
-                  <Badge color="info" pill className="mr-1">
-                    Medalla
-                  </Badge>
-                  <Badge color="info" pill className="mr-1">
-                    Número de corredor
-                  </Badge>
-                  <Badge color="info" pill className="mr-1">
-                    Tula
-                  </Badge>
-                </div>
               </div>
             </div>
           </Card>
-          <Card className="shadow border-0 mt-3">
-            <CardBody className="py-5">
-              <Row>
-                <div className="col-xs-12 col-md-1 text-center">
-                  <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                    <i className="fa fa-exclamation-triangle" />
-                  </div>
-                </div>
-                <div className={"col-xs-12 col-md-11"}>
-                  <h6 className="text-warning text-uppercase title-runners" style={{fontSize: '35px'}}>
-                    Inscripción Pendiente de pago
-                  </h6>
-                </div>
-              </Row>
-              <p className="description mt-3">
-                Recuerda que para finalizar la inscripción debes realizar una consignación
-                a la cuenta AUTORIZADA de ahorro a la mano Bancolombia 03115148995
-              </p>
-              <div>
-                <FormGroup>
-                  <Input className="text-right" type="file" name="file" id="exampleFile" />
-                  <FormText color="muted">
-                    Seleccione acá el comprobante de pago de la inscripción
-                  </FormText>
-                </FormGroup>
-                <div className="justify-content-end text-right">
-                  <Button
-                    className="mt-4"
-                    color="warning"
-                    type="button"
-                    onClick={uploadFile}
-                    disabled={loadingRegister}
-                  >
-                    <i className="ni ni-cloud-upload-96" />
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className={loadingRegister ? '': 'd-none'}
-                    />
-                    {' '}
-                    Subir Archivo de Pago
-                  </Button>
-                </div>
-
-              </div>
-            </CardBody>
-          </Card>
+          {validateStatusPayment()}
           <Card className="shadow border-0 mt-3">
             <CardBody className="py-5">
               <Row>
@@ -216,6 +249,43 @@ const Profile = () => {
               </p>
             </CardBody>
           </Card>
+          <Modal
+            className="modal-dialog-centered modal-success"
+            contentClassName="bg-gradient-success"
+            isOpen={notifyModal}
+            backdrop="static"
+            toggle={onCloseSuccessModal}
+          >
+            <div className="modal-header">
+              <h6 className="modal-title" id="modal-title-notification">
+                Confirmación
+              </h6>
+              <button
+                aria-label="Close"
+                className="close"
+                data-dismiss="modal"
+                type="button"
+                onClick={onCloseSuccessModal}
+              >
+                <span aria-hidden={true}>×</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="py-3 text-center">
+                <i className="ni ni-bell-55 ni-3x" />
+                <h4 className="heading mt-4">Inscripción de pago Exitosa!</h4>
+                <p>
+                  Tu registro ha de pago se ha finalizado correctamente, recibirás un e-mail de confirmación del pago
+                  a la II CARRERA VIRTUAL.
+                </p>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <Button className="btn-white" color="default" type="button" onClick={onCloseSuccessModal}>
+                Entendido!
+              </Button>
+            </div>
+          </Modal>
         </Container>
       </section>
     )

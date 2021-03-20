@@ -22,6 +22,7 @@ import Navbar from "components/Navbars/NavBar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 import Carousel from "../../views/IndexSections/Carousel";
 import {Link} from "react-router-dom";
+import LocalStorageUtil from "../../util/localstorage.util";
 
 class Landing extends React.Component {
   state = {};
@@ -29,6 +30,93 @@ class Landing extends React.Component {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     this.refs.main.scrollTop = 0;
+  };
+  isUserLoggedIn () {
+    const token = LocalStorageUtil.getItem(LocalStorageUtil.TOKEN_KEY);
+    return !(token === undefined || token === '' || token === null);
+  };
+  validateUserSession() {
+    if(this.isUserLoggedIn()) {
+      return
+    }
+    return (
+      <section className="section section-lg pt-lg-0 mt--200">
+        <Container>
+          <Row className="justify-content-center">
+            <Col lg="12">
+              <Row className="row-grid">
+                <Col lg="4">
+                  <Card className="card-lift--hover shadow border-0">
+                    <CardBody className=" text-center py-5">
+                      <div className=" icon-card icon-shape icon-shape-primary rounded-circle mb-4">
+                        <h6 className=" title-runners text-uppercase">
+                          5K
+                        </h6>
+                      </div>
+                      <p className="text-muted mt-3">
+                        <strong>CAMINELA O CORRELA PERO DISFRUTALA</strong>
+                      </p>
+                      <Button
+                        className="mt-4 text-center"
+                        color="primary"
+                        to={'/registro/5K'}
+                        tag={Link}
+                      >
+                        Inscribete Aqui!
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </Col>
+                <Col lg="4">
+                  <Card className="card-lift--hover shadow border-0">
+                    <CardBody className="text-center py-5">
+                      <div className="icon-card icon-shape icon-shape-danger rounded-circle mb-4">
+                        <h6 className="text-danger title-runners text-uppercase">
+                          10k
+                        </h6>
+                      </div>
+                      <p className="text-muted mt-3">
+                        <strong> CORRELA Y SUMA TUS MEJORES TIEMPOS </strong>
+                      </p>
+                      <Button
+                        className="mt-4"
+                        color="danger"
+                        to={'/registro/10K'}
+                        tag={Link}
+                      >
+                        Inscribete Aqui!
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </Col>
+                <Col lg="4">
+                  <Card className="card-lift--hover shadow border-0">
+                    <CardBody className="text-center py-5">
+                      <div className="icon-card icon-shape icon-shape-info rounded-circle mb-4">
+                        <h6 className="title-runners text-info text-uppercase">
+                          21k
+                        </h6>
+                      </div>
+                      <p className="text-muted mt-3">
+                        <strong>TU DISCIPLINA Y DEDICACION HARAN DE ESTOS KILOMETROS TU MEJOR EXPERIENCIA</strong>
+                      </p>
+                      <Button
+                        className="mt-4"
+                        color="info"
+                        to={'/registro/21K'}
+                        tag={Link}
+                      >
+                        Inscribete Aqui!
+                      </Button>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    )
   }
   render() {
     return (
@@ -90,82 +178,7 @@ class Landing extends React.Component {
             </section>
             {/* 1st Hero Variation */}
           </div>
-          <section className="section section-lg pt-lg-0 mt--200">
-            <Container>
-              <Row className="justify-content-center">
-                <Col lg="12">
-                  <Row className="row-grid">
-                    <Col lg="4">
-                      <Card className="card-lift--hover shadow border-0">
-                        <CardBody className=" text-center py-5">
-                          <div className=" icon-card icon-shape icon-shape-primary rounded-circle mb-4">
-                            <h6 className=" title-runners text-uppercase">
-                              5K
-                            </h6>
-                          </div>
-                          <p className="text-muted mt-3">
-                            <strong>CAMINELA O CORRELA PERO DISFRUTALA</strong>
-                          </p>
-                          <Button
-                            className="mt-4 text-center"
-                            color="primary"
-                            to={'/registro/5K'}
-                            tag={Link}
-                          >
-                            Inscribete Aqui!
-                          </Button>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col lg="4">
-                      <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="text-center py-5">
-                          <div className="icon-card icon-shape icon-shape-danger rounded-circle mb-4">
-                            <h6 className="text-danger title-runners text-uppercase">
-                              10k
-                            </h6>
-                          </div>
-                          <p className="text-muted mt-3">
-                            <strong> CORRELA Y SUMA TUS MEJORES TIEMPOS </strong>
-                          </p>
-                          <Button
-                            className="mt-4"
-                            color="danger"
-                            to={'/registro/10K'}
-                            tag={Link}
-                          >
-                            Inscribete Aqui!
-                          </Button>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col lg="4">
-                      <Card className="card-lift--hover shadow border-0">
-                        <CardBody className="text-center py-5">
-                          <div className="icon-card icon-shape icon-shape-info rounded-circle mb-4">
-                            <h6 className="title-runners text-info text-uppercase">
-                              21k
-                            </h6>
-                          </div>
-                          <p className="text-muted mt-3">
-                            <strong>TU DISCIPLINA Y DEDICACION HARAN DE ESTOS KILOMETROS TU MEJOR EXPERIENCIA</strong>
-                          </p>
-                          <Button
-                            className="mt-4"
-                            color="info"
-                            to={'/registro/21K'}
-                            tag={Link}
-                          >
-                            Inscribete Aqui!
-                          </Button>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Container>
-          </section>
+          {this.validateUserSession()}
           <section className="section bg-secondary">
             <Container>
               <Row className="row-grid align-items-center">
