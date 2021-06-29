@@ -14,6 +14,7 @@ import Profile from "components/Profile/Profile.js";
 import Register from "components/auth/Register.js";
 import Regulation from "components/Regulation/Regulation";
 import Admin from "./components/Admin/Admin";
+import RecoveryPassword from "components/auth/RecoveryPassword";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.render(
         render={props => <Landing {...props} />}
       />
       <Route path="/login" exact render={props => <Login {...props} />} />
+      <Route path="/recovery-password/:token" exact render={props => <RecoveryPassword {...props} />} />
       <Route path="/admin" exact render={props => <Admin {...props} />} />
       <Route
         path="/profile-page"
