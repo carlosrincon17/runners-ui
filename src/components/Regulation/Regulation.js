@@ -279,23 +279,6 @@ class Regulation extends React.Component {
                                 </div>
                               </div>
                             </li>
-                            <li className="py-2">
-                              <div className="d-flex align-items-center">
-                                <div>
-                                  <Badge
-                                    className="badge-circle mr-3"
-                                    color="info"
-                                  >
-                                    <i className="ni ni-box-2" />
-                                  </Badge>
-                                </div>
-                                <div>
-                                  <h6 className="mb-0">
-                                    Tula
-                                  </h6>
-                                </div>
-                              </div>
-                            </li>
                           </ul>
                           <p className="description">
                             Envio incluido

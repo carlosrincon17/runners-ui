@@ -54,7 +54,7 @@ class Landing extends React.Component {
                         </h6>
                       </div>
                       <p className="text-muted mt-3">
-                        <strong>CAMINELA O CORRELA PERO DISFRUTALA</strong>
+                        <strong>CAMINALA O CORRELA PERO DISFRUTALA</strong>
                       </p>
                       <Button
                         className="mt-4 text-center"
@@ -227,12 +227,12 @@ class Landing extends React.Component {
                       className="title-h3"
                     >Ten Presente!</h3>
                     <p className="lead">
-                      Desde el día 20 de marzo del 2021 hasta el 30 de junio del 2021 fecha de cierre de inscripciones,
-                      estas estarán abiertas las 24 horas del día, a través de la página web
+                      Las inscripciones estarán abiertas desde el día 20 de Marzo del 2021 al 30 de Junio del 2021
+                      las 24 horas del día a través de la página web:
                     </p>
                     <a
                       className="font-weight-bold text-info mt-5"
-                      href="https://www.runnerscucuta.com"
+                      href="http://www.runnerscucuta.com"
                       onClick={e => e.preventDefault()}
                     >
                       www.runnerscucuta.com

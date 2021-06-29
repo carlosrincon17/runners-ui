@@ -3,8 +3,10 @@ import axios from "axios";
 class BaseService {
 
     constructor() {
+        this.baseUrl = 'http://localhost:8000/'
+        // this.baseUrl = 'https://runnerscucuta.com:8000/'
         this.apiHelper = axios.create({
-            baseURL: 'http://143.198.233.112:8000/',
+            baseURL: this.baseUrl,
             timeout: 10000,
         });
     }

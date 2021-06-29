@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import {Card, Container, Row, Col, CardBody, Alert, Button, UncontrolledTooltip} from "reactstrap";
+import {Card, Container, Row, Col, CardBody, Alert, Button, UncontrolledTooltip, Modal} from "reactstrap";
 import DataTable from 'react-data-table-component';
 
 import Navbar from "components/Navbars/NavBar.js";
@@ -14,6 +14,8 @@ const Admin = () => {
   const [eventRegistrationSummary, setEventRegistrationSummary] = useState([]);
   const [inscriptions, setInscriptions] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("PAGO PENDIENTE");
+  const [previewModal, setPreviewModal] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState("");
   const eventRegistrationService = new EventRegistrationService();
   const eventNames = [
     "PAGO PENDIENTE",
@@ -93,6 +95,12 @@ const Admin = () => {
       .catch(error => console.log(error));
   }
 
+  const previewPaymentEvidence = (id) => {
+    const eventRegistrationService = new EventRegistrationService();
+    setPreviewModal(true);
+    setPreviewUrl(eventRegistrationService.getPreviewUrl(id));
+  }
+
   const getApproveButton = (row) => {
     return (
       <>
@@ -108,6 +116,19 @@ const Admin = () => {
           target="approve-button"
         >
           Aprobar
+        </UncontrolledTooltip>
+        <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
+                id="preview-button" onClick={() => previewPaymentEvidence(row.event_registration_id)}>
+        <span className="btn-inner--icon">
+            <i className="ni ni-album-2"/>
+        </span>
+        </Button>
+        <UncontrolledTooltip
+          delay={0}
+          placement="top"
+          target="preview-button"
+        >
+          Ver Evidencias
         </UncontrolledTooltip>
       </>
     )
@@ -127,6 +148,10 @@ const Admin = () => {
   const selectStatus = (eventName) => {
     getInscriptions(eventName);
   };
+
+  const onClosePreviewModal = () => {
+    setPreviewModal(false);
+  }
 
   const getEventTypeContainer = (eventName) => {
     const eventSummary = eventRegistrationSummary.find(
@@ -207,6 +232,39 @@ const Admin = () => {
                 </Row>
               </CardBody>
             </Card>
+            <Modal
+              className="modal-dialog-centered"
+              isOpen={previewModal}
+              backdrop="static"
+              toggle={onClosePreviewModal}
+            >
+              <div className="modal-header">
+                <h6 className="modal-title" id="modal-title-notification">
+                  Soporte de pago
+                </h6>
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={onClosePreviewModal}
+                >
+                  <span aria-hidden={true}>×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <Row>
+                  <Col md="12" className={"text-center"}>
+                    <img src={previewUrl} className={"evidence-image"}/>
+                  </Col>
+                </Row>
+              </div>
+              <div className="modal-footer">
+                <Button className="btn-white" color="default" type="button" onClick={onClosePreviewModal}>
+                  Cerrar
+                </Button>
+              </div>
+            </Modal>
           </Container>
         </section>
       </main>

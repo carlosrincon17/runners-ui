@@ -54,7 +54,7 @@ const NavBar = () => {
   const getLoginButton = () => {
     if (!isUserLoggedIn()) {
       return (
-        <NavItem className="d-none d-lg-block ml-lg-4">
+        <NavItem className="d-lg-block ml-lg-4">
           <Button
             className="btn-icon btn-white"
             color="default"

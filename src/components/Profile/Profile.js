@@ -1,17 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 
 import {
   Card,
   Container,
   Row,
   Col,
-  Badge,
   CardBody,
   Spinner,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
   Button, Modal
 } from "reactstrap";
 import Female from "assets/img/female.png";
@@ -23,15 +18,54 @@ import CardsFooter from "components/Footers/CardsFooter";
 import {useHistory} from "react-router";
 import EventRegistrationService from "../../services/event_registration.service";
 import CurrencyFormat from "react-currency-format";
+import {
+  acceptStyle,
+  activeStyle,
+  baseStyle,
+  imgStyle, rejectStyle,
+  thumb,
+  thumbInner,
+  thumbsContainer
+} from "../../util/data_table.util";
+import {useDropzone} from "react-dropzone";
 
 const Profile = () => {
 
   const [user, setUser] = useState();
   const [eventRegistration, setEventRegistration] = useState();
+  const [files, setFiles] = useState([]);
   const history = useHistory();
   const [loadingUser, setLoadingUser] = useState(false);
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [notifyModal, setNotifyModal] = useState(false);
+
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject
+  } = useDropzone({
+    accept: 'image/*',
+    maxFiles: 1,
+    onDrop: acceptedFiles => {
+      setFiles(acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })));
+    }
+  });
+
+  const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isDragActive ? activeStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+  }), [
+    isDragActive,
+    isDragReject,
+    isDragAccept
+  ]);
+
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -41,12 +75,17 @@ const Profile = () => {
 
   }, []);
 
+  useEffect(() => () => {
+    files.forEach(file => URL.revokeObjectURL(file.preview));
+  }, [files]);
+
+
   const uploadFile = () => {
     const eventRegistrationService = new EventRegistrationService();
     setLoadingUpload(true);
-    eventRegistrationService.uploadFile(eventRegistration.id)
+    eventRegistrationService.uploadFile(eventRegistration.id, {file: files[0]})
       .then(response => {
-        if(response.data) {
+        if (response.data) {
           setNotifyModal(true)
         }
       })
@@ -56,6 +95,17 @@ const Profile = () => {
       })
   }
 
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img
+          src={file.preview}
+          style={imgStyle}
+        />
+      </div>
+    </div>
+  ));
+
   const loadUserData = () => {
     const userService = new UserService();
     setLoadingUser(true);
@@ -63,7 +113,8 @@ const Profile = () => {
       .then(response => {
         setUser(response.data)
       })
-      .catch(() => {})
+      .catch(() => {
+      })
       .finally(() => setLoadingUser(false))
   };
 
@@ -74,7 +125,8 @@ const Profile = () => {
       .then(response => {
         setEventRegistration(response.data)
       })
-      .catch(() => {})
+      .catch(() => {
+      })
       .finally(() => setLoadingUser(false))
   };
 
@@ -84,14 +136,14 @@ const Profile = () => {
   }
 
   const validateStatusPayment = () => {
-    if(eventRegistration?.status === 'PAGO PENDIENTE') {
+    if (eventRegistration?.status === 'PAGO PENDIENTE') {
       return (
         <Card className="shadow border-0 mt-3">
           <CardBody className="py-5">
             <Row>
               <div className="col-xs-12 col-md-1 text-center">
                 <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                  <i className="fa fa-exclamation-triangle" />
+                  <i className="fa fa-exclamation-triangle"/>
                 </div>
               </div>
               <div className={"col-xs-12 col-md-11"}>
@@ -105,28 +157,29 @@ const Profile = () => {
               a la cuenta AUTORIZADA de ahorro a la mano Bancolombia 03115148995
             </p>
             <div>
-              <FormGroup>
-                <Input className="text-right" type="file" name="file" id="exampleFile" />
-                <FormText color="muted">
-                  Seleccione acá el comprobante de pago de la inscripción
-                </FormText>
-              </FormGroup>
+              <div {...getRootProps({style})}>
+                <input {...getInputProps()} />
+                <p>Seleccione el archivo que desea cargar como evidencia de la transferencia.</p>
+              </div>
+              <aside style={thumbsContainer}>
+                {thumbs}
+              </aside>
               <div className="justify-content-end text-right">
                 <Button
                   className="mt-4"
                   color="warning"
                   type="button"
                   onClick={uploadFile}
-                  disabled={loadingUpload}
+                  disabled={loadingUpload || !files.length}
                 >
-                  <i className="ni ni-cloud-upload-96" />
+                  <i className="ni ni-cloud-upload-96"/>
                   <Spinner
                     as="span"
                     animation="grow"
                     size="sm"
                     role="status"
                     aria-hidden="true"
-                    className={loadingUpload ? '': 'd-none'}
+                    className={loadingUpload ? '' : 'd-none'}
                   />
                   {' '}
                   Subir Archivo de Pago
@@ -141,14 +194,14 @@ const Profile = () => {
   }
 
   const getUserCards = () => {
-    if(loadingUser) {
+    if (loadingUser) {
       return (
         <section className="section">
           <Container className="text-center">
             <Spinner
               as="span"
               animation="grow"
-              style={{ width: '5rem', height: '5rem' }}
+              style={{width: '5rem', height: '5rem'}}
               role="status"
             />
           </Container>
@@ -183,7 +236,8 @@ const Profile = () => {
                     </div>
                     <div>
                       <span className="heading">
-                        <CurrencyFormat value={eventRegistration?.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                        <CurrencyFormat value={eventRegistration?.amount} displayType={'text'} thousandSeparator={true}
+                                        prefix={'$'}/>
                         </span>
                       <span className="description">Valor de inscripción</span>
                     </div>
@@ -235,7 +289,7 @@ const Profile = () => {
               <Row>
                 <div className="col-xs-12 col-md-1 text-center">
                   <div className="icon icon-shape icon-shape-info rounded-circle mb-4">
-                    <i className="fa fa-exclamation-triangle" />
+                    <i className="fa fa-exclamation-triangle"/>
                   </div>
                 </div>
                 <div className={"col-xs-12 col-md-11"}>
@@ -273,7 +327,7 @@ const Profile = () => {
             </div>
             <div className="modal-body">
               <div className="py-3 text-center">
-                <i className="ni ni-bell-55 ni-3x" />
+                <i className="ni ni-bell-55 ni-3x"/>
                 <h4 className="heading mt-4">Inscripción de pago Exitosa!</h4>
                 <p>
                   Tu registro ha de pago se ha finalizado correctamente, recibirás un e-mail de confirmación del pago
@@ -323,7 +377,7 @@ const Profile = () => {
         </section>
         {getUserCards()}
       </main>
-      <CardsFooter />
+      <CardsFooter/>
     </>
   );
 }

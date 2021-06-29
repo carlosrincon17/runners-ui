@@ -24,4 +24,20 @@
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root"></div>
   </body>
+  <script>
+    setTimeout(() => {
+      const loginDate = localStorage.getItem('access_time')
+      if (loginDate && loginDate !== '') {
+        const loginDateObj = new Date(loginDate);
+        if (loginDateObj) {
+          if ((loginDateObj.getTime() + (10 * 60 * 1000)) < (new Date()).getTime()) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('is_admin');
+            localStorage.removeItem('access_time');
+            window.location.href = '/';
+          }
+        }
+      }
+    }, 100);
+  </script>
 </html>
