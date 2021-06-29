@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {Card, Container, Row, Col, CardBody, Alert, Button, UncontrolledTooltip, Modal} from "reactstrap";
+import { Card, Container, Row, Col, CardBody, Alert, Button, UncontrolledTooltip, Modal } from "reactstrap";
 import DataTable from 'react-data-table-component';
 
 import Navbar from "components/Navbars/NavBar.js";
 import CardsFooter from "components/Footers/CardsFooter";
 import EventRegistrationService from "../../services/event_registration.service";
 import CurrencyFormat from "react-currency-format";
-import {customStyles} from "../../util/data_table.util";
+import EventRegistrationDetail from "./EventRegistrationDetail";
+import { customStyles } from "../../util/data_table.util";
 
 const Admin = () => {
 
@@ -15,7 +16,9 @@ const Admin = () => {
   const [inscriptions, setInscriptions] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("PAGO PENDIENTE");
   const [previewModal, setPreviewModal] = useState(false);
+  const [eventRegistrationModal, setEventRegistrationModal] = useState(false);
   const [previewUrl, setPreviewUrl] = useState("");
+  const [selectedRegistrationId, setSelectedRegistrationId] = useState(undefined);
   const eventRegistrationService = new EventRegistrationService();
   const eventNames = [
     "PAGO PENDIENTE",
@@ -45,7 +48,7 @@ const Admin = () => {
       selector: 'registration_type_amount',
       sortable: true,
       cell: row => (<CurrencyFormat value={row.registration_type_amount} displayType={'text'} thousandSeparator={true}
-                                    prefix={'$'}/>)
+        prefix={'$'} />)
     },
     {
       name: 'Documento',
@@ -66,8 +69,7 @@ const Admin = () => {
       name: 'Opciones',
       selector: '',
       sortable: true,
-      cell: row => getApproveButton(row),
-      omit: selectedStatus !== "VALIDACIÓN DE PAGO PENDIENTE"
+      cell: row => getOptionsButtons(row)
     }
   ], [selectedStatus]);
 
@@ -101,14 +103,22 @@ const Admin = () => {
     setPreviewUrl(eventRegistrationService.getPreviewUrl(id));
   }
 
-  const getApproveButton = (row) => {
+  const viewRegistrationEvent = (id) => {
+    setEventRegistrationModal(true);
+    setSelectedRegistrationId(id);
+  }
+
+  const getOptionsButtons = (row) => {
+    const showApprove = selectedStatus === "VALIDACIÓN DE PAGO PENDIENTE" ? "" : "hidden";
+    const showEvidences = selectedStatus !== "PAGO PENDIENTE" ? "" : "hidden";
     return (
       <>
-        <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
-                id="approve-button" onClick={() => approveEventRegistration(row.event_registration_id)}>
-        <span className="btn-inner--icon">
-            <i className="ni ni-check-bold"/>
-        </span>
+        <Button className={`btn btn-icon ${showApprove}`} color="primary" size="sm" type="button"
+          id="approve-button" onClick={() => approveEventRegistration(row.event_registration_id)}
+          >
+          <span className="btn-inner--icon">
+            <i className="ni ni-check-bold" />
+          </span>
         </Button>
         <UncontrolledTooltip
           delay={0}
@@ -117,11 +127,11 @@ const Admin = () => {
         >
           Aprobar
         </UncontrolledTooltip>
-        <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
-                id="preview-button" onClick={() => previewPaymentEvidence(row.event_registration_id)}>
-        <span className="btn-inner--icon">
-            <i className="ni ni-album-2"/>
-        </span>
+        <Button className={`btn btn-icon ${showEvidences}`} color="primary" size="sm" type="button"
+          id="preview-button" onClick={() => previewPaymentEvidence(row.event_registration_id)}>
+          <span className="btn-inner--icon">
+            <i className="ni ni-album-2" />
+          </span>
         </Button>
         <UncontrolledTooltip
           delay={0}
@@ -129,6 +139,19 @@ const Admin = () => {
           target="preview-button"
         >
           Ver Evidencias
+        </UncontrolledTooltip>
+        <Button className={"btn btn-icon"} color="primary" size="sm" type="button"
+          id="view-user-button" onClick={() => viewRegistrationEvent(row.event_registration_id)}>
+          <span className="btn-inner--icon">
+            <i className="ni ni-circle-08" />
+          </span>
+        </Button>
+        <UncontrolledTooltip
+          delay={0}
+          placement="top"
+          target="view-user-button"
+        >
+          Ver datos de inscripción
         </UncontrolledTooltip>
       </>
     )
@@ -152,6 +175,23 @@ const Admin = () => {
   const onClosePreviewModal = () => {
     setPreviewModal(false);
   }
+
+  const onCloseEventRegistrationModal = () => {
+    setEventRegistrationModal(false);
+  }
+
+  const getEventRegistrationModal = () => {
+    return (
+      <Modal
+        className="modal-dialog-centered"
+        isOpen={eventRegistrationModal}
+        backdrop="static"
+        toggle={onCloseEventRegistrationModal}
+      >
+        <EventRegistrationDetail eventRegistrationId={selectedRegistrationId} onCloseModal={onCloseEventRegistrationModal}/>
+      </Modal>
+    );
+  };
 
   const getEventTypeContainer = (eventName) => {
     const eventSummary = eventRegistrationSummary.find(
@@ -179,15 +219,15 @@ const Admin = () => {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <main className="profile-page">
         <section className="section-profile-cover section-shaped my-0">
           {/* Circles background */}
           <div className="shape shape-style-1 shape-default alpha-4">
-            <span/>
-            <span/>
-            <span/>
-            <span/>
+            <span />
+            <span />
+            <span />
+            <span />
           </div>
           {/* SVG separator */}
           <div className="separator separator-bottom separator-skew">
@@ -255,7 +295,7 @@ const Admin = () => {
               <div className="modal-body">
                 <Row>
                   <Col md="12" className={"text-center"}>
-                    <img src={previewUrl} className={"evidence-image"}/>
+                    <img src={previewUrl} className={"evidence-image"} />
                   </Col>
                 </Row>
               </div>
@@ -265,10 +305,11 @@ const Admin = () => {
                 </Button>
               </div>
             </Modal>
+            {getEventRegistrationModal()}
           </Container>
         </section>
       </main>
-      <CardsFooter/>
+      <CardsFooter />
     </>
   );
 }

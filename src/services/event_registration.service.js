@@ -22,6 +22,12 @@ class EventRegistrationService extends BaseService {
         });
     }
 
+    getEventRegistrationById(eventRegistrationId) {
+        return this.apiHelper.get(`${this.moduleUrl}/${eventRegistrationId}`,{
+            headers: {'Authorization': 'Bearer ' + LocalStorageUtil.getItem(LocalStorageUtil.TOKEN_KEY)}
+        });
+    }
+
     uploadFile(id, data) {
         const config = {
             headers: {
